@@ -1,0 +1,9 @@
+## Interface: 50300
+## Title: Simple Interrupt Announce
+## Notes: A simple interrupt announcer
+## Author: BeathsCurse (Saphod - Draenor EU)
+## Version: 1.0.23
+## SavedVariablesPerCharacter: SIACFG
+
+SimpleInterruptAnnounce.lua
+ConfigurationPanelLoader.lua

@@ -1,0 +1,15 @@
+## Interface: 50300
+## Title: SharedMedia
+## Notes: Inserts some media into LibSharedMedia's storage.
+## Version: 3.0.5-183
+## Author: Elkano
+## OptionalDeps: LibStub, LibSharedMedia-3.0
+
+#@no-lib-strip@
+libs\LibStub\LibStub.lua
+libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
+libs\LibSharedMedia-3.0\lib.xml
+#@end-no-lib-strip@
+
+SharedMedia.lua
+..\SharedMedia_MyMedia\MyMedia.lua

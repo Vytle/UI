@@ -1,0 +1,21 @@
+## Interface: 50300
+## Title: |cffCC3333 n|rCore
+## OptionalDeps: !Beautycase, Recount, Omen, DBM, PitBull4, Skada, TinyDPS
+
+core.lua
+
+modules\align.lua
+modules\altbuy.lua
+modules\autogreed.lua
+modules\bubbles.lua
+modules\coords.lua
+modules\durability.lua
+modules\errors.lua
+modules\fonts.lua
+modules\mail.lua
+modules\quicky.lua
+modules\repairtrash.lua
+modules\skins.lua
+modules\spellid.lua
+modules\warning.lua
+modules\watchframe.lua

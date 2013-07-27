@@ -1,0 +1,10 @@
+
+nibPointDisplayDB = {
+	["profileKeys"] = {
+		["Vonkk - Jaedenar"] = "Default",
+	},
+	["profiles"] = {
+		["Default"] = {
+		},
+	},
+}

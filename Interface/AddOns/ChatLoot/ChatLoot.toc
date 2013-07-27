@@ -1,0 +1,8 @@
+## Interface: 50300
+## Title: ChatLoot
+## Version: 1.1
+## SavedVariables: CHATLOOT
+## Author: Meatbag
+## Notes: Moves the loot window into a chat tab
+
+ChatLoot.lua

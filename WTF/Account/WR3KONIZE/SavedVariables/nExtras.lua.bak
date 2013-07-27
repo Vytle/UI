@@ -1,0 +1,6 @@
+
+nEDB = {
+	["debug"] = false,
+	["always"] = {
+	},
+}

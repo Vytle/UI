@@ -1,0 +1,2 @@
+
+nEDBPerCharacter = nil

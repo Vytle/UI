@@ -1,0 +1,82 @@
+MACRO64 000000000100000E "  MDPET" "INV_Misc_QuestionMark"
+/cast [target=pet] Misdirection
+END
+MACRO64 0000000001000019 " Arcane Shot" "INV_Misc_QuestionMark"
+#showtooltip Arcane Shot
+/cast !auto shot
+/use 10
+/cast Arcane Shot
+END
+MACRO64 0000000001000015 " BlackArrow" "INV_Misc_QuestionMark"
+#showtooltip Black Arrow
+/cast !auto shot
+/cast Black Arrow
+END
+MACRO64 0000000001000010 " Chimera Shot" "INV_Misc_QuestionMark"
+#showtooltip Chimera Shot
+/cast !auto shot
+/use 10
+/cast Chimera Shot
+END
+MACRO64 0000000001000003 " Explosive Shot" "INV_Misc_QuestionMark"
+#showtooltip Explosive Shot
+/cast !auto shot
+/use 10
+/cast Explosive Shot
+END
+MACRO64 000000000100001C " Feign Death" "INV_Misc_QuestionMark"
+#showtooltip Feign Death
+/stopcasting
+/cast Feign Death
+END
+MACRO64 0000000001000008 " Kill Shot" "INV_Misc_QuestionMark"
+#showtooltip Kill Shot
+/cast !auto shot
+/use 10
+/cast Kill Shot
+END
+MACRO64 0000000001000017 "AspectToggle" "INV_Misc_QuestionMark"
+#showtooltip
+/castsequence !Aspect of the Hawk, !Aspect of the Cheetah
+END
+MACRO64 000000000100000C "Cobra Shot" "INV_Misc_QuestionMark"
+#showtooltip Cobra Shot
+/cast !auto shot
+/cast Cobra Shot
+END
+MACRO64 0000000001000013 "Explosive Trap" "INV_Misc_QuestionMark"
+#showtooltip Explosive Trap
+/cast !Explosive Trap
+END
+MACRO64 0000000001000005 "Flare" "INV_Misc_QuestionMark"
+#showtooltip Flare
+/cast !Flare
+END
+MACRO64 0000000001000011 "Frost Trap" "INV_Misc_QuestionMark"
+#showtooltip Ice Trap
+/cast !Ice Trap
+END
+MACRO64 000000000100001E "MD" "INV_MISC_QUESTIONMARK"
+#showtooltip Cobra Shot
+/cast !auto shot
+/cast Cobra Shot
+END
+MACRO64 000000000100001A "Misdirection" "INV_Misc_QuestionMark"
+#showtooltip Misdirection
+/cast [@focus,exists][@pet,exists] Misdirection
+END
+MACRO64 0000000001000018 "Multi-Shot" "INV_Misc_QuestionMark"
+#showtooltip Multi-Shot
+/cast !auto shot
+/cast Multi-Shot
+END
+MACRO64 000000000100001D "RRT" "INV_Misc_QuestionMark"
+#showtooltip Rapid Fire
+/cast Rapid Fire
+/cast Blood Fury
+/use Unsolvable Riddle
+END
+MACRO64 0000000001000016 "Snake Trap" "INV_Misc_QuestionMark"
+#showtooltip Snake Trap
+/cast !Snake Trap
+END

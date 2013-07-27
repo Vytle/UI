@@ -1,0 +1,7 @@
+## Interface: 50300
+## Title: InspectFix
+## Author: oscarucb
+## Description: Fixes some bugs that arise in the Blizzard UI while inspecting characters
+## Version: 4.4.1
+
+InspectFix.lua

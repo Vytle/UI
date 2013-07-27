@@ -1,0 +1,12 @@
+## Interface: 50300
+## Title: |cffCC3333 n|rExtras
+## Author: Cokedriver
+## Version: 5.2.1
+## Notes: Special Thanks to all the addon creators without them i would not of been able to put these addons together so i can use them.
+## SavedVariables: nEDB
+## SavedVariablesPerCharacter: nEDBPerCharacter
+## OptionalDeps: nCore
+
+Libs\Libs.xml
+
+nExtras.lua

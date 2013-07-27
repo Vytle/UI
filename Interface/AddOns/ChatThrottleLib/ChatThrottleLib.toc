@@ -1,0 +1,9 @@
+## Interface: 50300
+## Title: Lib: ChatThrottleLib
+## Notes: Embeddable chat throttling library with traffic shaping and priorities
+## Author: Mikk
+## Version: 22
+## eMail: dpsgnome@mail.com
+## LoadOnDemand: 1
+
+ChatThrottleLib.xml

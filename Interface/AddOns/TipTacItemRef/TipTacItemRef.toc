@@ -1,0 +1,8 @@
+## Interface: 50300
+## Version: 13.05.22
+## Title: TipTacItemRef
+## Author: Aezay (Earthen Ring EU)
+## Notes: Improved ItemRefTooltip
+## OptionalDeps: TipTac
+GetUpgradedItemLevel.lua
+core.lua

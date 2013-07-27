@@ -1,0 +1,77 @@
+VER 3 010000000000000E "  MDPET" "INV_Misc_QuestionMark"
+/cast [target=pet] Misdirection
+END
+VER 3 0100000000000019 " Arcane Shot" "INV_Misc_QuestionMark"
+#showtooltip Arcane Shot
+/cast !auto shot
+/use 10
+/cast Arcane Shot
+END
+VER 3 0100000000000015 " BlackArrow" "INV_Misc_QuestionMark"
+#showtooltip Black Arrow
+/cast !auto shot
+/cast Black Arrow
+END
+VER 3 0100000000000003 " Explosive Shot" "INV_Misc_QuestionMark"
+#showtooltip Explosive Shot
+/cast !auto shot
+/use 10
+/cast Explosive Shot
+END
+VER 3 010000000000001C " Feign Death" "INV_Misc_QuestionMark"
+#showtooltip Feign Death
+/stopcasting
+/cast Feign Death
+END
+VER 3 0100000000000008 " Kill Shot" "INV_Misc_QuestionMark"
+#showtooltip Kill Shot
+/cast !auto shot
+/use 10
+/cast Kill Shot
+END
+VER 3 0100000000000017 "AspectToggle" "INV_Misc_QuestionMark"
+#showtooltip
+/castsequence !Aspect of the Hawk, !Aspect of the Cheetah
+END
+VER 3 010000000000000C "Cobra Shot" "INV_Misc_QuestionMark"
+#showtooltip Cobra Shot
+/cast !auto shot
+/use 10
+/cast Cobra Shot
+END
+VER 3 0100000000000013 "Explosive Trap" "INV_Misc_QuestionMark"
+#showtooltip Explosive Trap
+/cast !Explosive Trap
+END
+VER 3 0100000000000005 "Flare" "INV_Misc_QuestionMark"
+#showtooltip Flare
+/cast !Flare
+END
+VER 3 0100000000000011 "Frost Trap" "INV_Misc_QuestionMark"
+#showtooltip Ice Trap
+/cast !Ice Trap
+END
+VER 3 010000000000001A "Misdirection" "INV_Misc_QuestionMark"
+#showtooltip Misdirection
+/cast [@focus,exists][@pet,exists] Misdirection
+END
+VER 3 0100000000000018 "Multi-Shot" "INV_Misc_QuestionMark"
+#showtooltip Multi-Shot
+/cast !auto shot
+/cast Multi-Shot
+END
+VER 3 010000000000001D "RRT" "INV_Misc_QuestionMark"
+#showtooltip Rapid Fire
+/cast Rapid Fire
+/cast Blood Fury
+END
+VER 3 0100000000000016 "Snake Trap" "INV_Misc_QuestionMark"
+#showtooltip Snake Trap
+/cast !Snake Trap
+END
+VER 3 01000000000000C8 "SSQuick" "INV_MISC_QUESTIONMARK"
+#showtooltip Silencing Shot
+/stopcasting
+/stopcasting
+/cast Silencing Shot
+END

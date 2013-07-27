@@ -1,0 +1,13 @@
+## Interface: 50300
+## Title: |cffaaaaaanib|rPointDisplay
+## Author: Nibelheim
+## Notes: Customizable graphical point display (Combo Points, Holy Power, Soul Shards, Maelstrom Weapon, etc).
+## Version: 7.8
+## SavedVariables: nibPointDisplayDB
+## OptionalDeps: nibLibs, Ace3, LibSharedMedia-3.0, AceGUI-3.0-SharedMediaWidgets
+
+## X-WoWI-ID: 17750
+
+Embeds.xml
+Core.lua
+Config.lua

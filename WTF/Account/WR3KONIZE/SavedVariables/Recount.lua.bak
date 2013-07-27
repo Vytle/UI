@@ -1,0 +1,60 @@
+
+RecountDB = {
+	["profileKeys"] = {
+		["Vonok - Jaedenar"] = "Vonok - Jaedenar",
+	},
+	["profiles"] = {
+		["Vonok - Jaedenar"] = {
+			["GraphWindowY"] = 0,
+			["MainWindow"] = {
+				["Buttons"] = {
+					["CloseButton"] = false,
+					["LeftButton"] = false,
+					["ConfigButton"] = false,
+					["RightButton"] = false,
+				},
+				["ShowScrollbar"] = false,
+				["Position"] = {
+					["y"] = -360.7305755615234,
+					["x"] = 605.159912109375,
+					["w"] = 139.9999694824219,
+				},
+				["BarText"] = {
+					["NumFormat"] = 3,
+				},
+			},
+			["Colors"] = {
+				["Bar"] = {
+					["Bar Text"] = {
+						["a"] = 1,
+					},
+					["Total Bar"] = {
+						["a"] = 1,
+					},
+				},
+				["Other Windows"] = {
+					["Background"] = {
+						["r"] = 0,
+						["g"] = 0,
+						["b"] = 0,
+					},
+				},
+				["Window"] = {
+					["Background"] = {
+						["a"] = 0.7900000065565109,
+						["r"] = 0,
+						["g"] = 0,
+						["b"] = 0,
+					},
+					["Title"] = {
+						["a"] = 0,
+					},
+				},
+			},
+			["DetailWindowY"] = 0,
+			["DetailWindowX"] = 0,
+			["GraphWindowX"] = 0,
+			["CurDataSet"] = "OverallData",
+		},
+	},
+}

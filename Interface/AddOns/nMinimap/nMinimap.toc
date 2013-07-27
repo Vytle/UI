@@ -1,0 +1,12 @@
+## Interface: 50300
+## Title: |cffCC3333 n|rMinimap
+## RequiredDeps: !Beautycase
+
+config.lua
+config_custom.lua
+
+core.lua
+capture.lua
+calendar.lua
+clock.lua
+tab.lua

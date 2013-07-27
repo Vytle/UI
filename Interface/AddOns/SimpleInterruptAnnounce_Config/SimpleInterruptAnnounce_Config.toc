@@ -1,0 +1,8 @@
+## Interface: 50300
+## Title: Simple Interrupt Announce Config
+## Notes: Configuration panel for SIA
+## Author: BeathsCurse (Saphod - Draenor EU)
+## Dependencies: SimpleInterruptAnnounce
+## LoadOnDemand: 1
+
+ConfigurationPanel.lua

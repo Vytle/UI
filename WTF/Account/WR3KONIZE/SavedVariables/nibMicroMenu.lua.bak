@@ -1,0 +1,15 @@
+
+nibMicroMenuDB = {
+	["profileKeys"] = {
+		["Vonok - Jaedenar"] = "Default",
+	},
+	["profiles"] = {
+		["Default"] = {
+			["position"] = {
+				["y"] = -200,
+				["x"] = -105,
+				["anchorto"] = "TOPRIGHT",
+			},
+		},
+	},
+}

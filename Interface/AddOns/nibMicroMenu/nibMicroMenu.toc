@@ -1,0 +1,20 @@
+## Interface: 50300
+## Title: |cffaaaaaanib|rMicroMenu
+## Author: Screamie (Screamlord @ Malygos EU)
+## FormerAuthor: Nibelheim, lemmie13
+## Notes: Text based Micro Menu
+## Version: 0.8.5
+## SavedVariables: nibMicroMenuDB
+## OptionalDeps: nibLibs, Ace3, LibSharedMedia-3.0, AceGUI-3.0-SharedMediaWidgets
+
+## X-WoWI-ID: 16819
+
+Embeds.xml
+
+Locale\enUS.lua
+Locale\frFR.lua
+Locale\deDE.lua
+Locale\zhTW.lua
+
+Core.lua
+Config.lua

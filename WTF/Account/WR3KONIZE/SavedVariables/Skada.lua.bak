@@ -1,0 +1,67 @@
+
+SkadaDB = {
+	["namespaces"] = {
+		["LibDualSpec-1.0"] = {
+		},
+	},
+	["profileKeys"] = {
+		["Vonok - Jaedenar"] = "Vytle",
+	},
+	["profiles"] = {
+		["Default"] = {
+			["windows"] = {
+				{
+					["point"] = "CENTER",
+					["x"] = 335.1041870117188,
+					["y"] = -47.30905151367188,
+				}, -- [1]
+			},
+		},
+		["Vytle"] = {
+			["windows"] = {
+				{
+					["barslocked"] = true,
+					["y"] = 31.57709503173828,
+					["barbgcolor"] = {
+						["a"] = 0,
+						["b"] = 0,
+						["g"] = 0,
+						["r"] = 0,
+					},
+					["returnaftercombat"] = true,
+					["point"] = "BOTTOMRIGHT",
+					["background"] = {
+						["color"] = {
+							["a"] = 0.6400000154972076,
+							["b"] = 0,
+						},
+						["height"] = 165.5040283203125,
+					},
+					["barwidth"] = 161.1518249511719,
+					["x"] = -203.2784423828125,
+					["mode"] = "Static Shield targets",
+					["barcolor"] = {
+						["a"] = 0.7800000011920929,
+						["g"] = 0.3019607843137255,
+						["r"] = 0.3019607843137255,
+					},
+					["modeincombat"] = "Threat",
+					["bartexture"] = "Blizzard",
+					["title"] = {
+						["color"] = {
+							["a"] = 0,
+							["b"] = 0.3019607843137255,
+							["g"] = 0.1019607843137255,
+							["r"] = 0.1019607843137255,
+						},
+						["borderthickness"] = 0,
+						["height"] = 13,
+					},
+				}, -- [1]
+			},
+			["icon"] = {
+				["hide"] = true,
+			},
+		},
+	},
+}
