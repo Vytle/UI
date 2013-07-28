@@ -15,3 +15,10 @@ When the game has loaded:
 
 - type /pitbull and select the Vytle Profile (or Vytle - Healer, if your playing a healer...)
 - type /quartz config and select the Vytle profile.
+
+
+Scaling command
+/run SetCVar("UIScale", 0.69)
+
+Slash command help
+/uicmds
