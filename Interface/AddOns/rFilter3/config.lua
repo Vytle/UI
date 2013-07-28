@@ -12,7 +12,7 @@
 -- // Focus
 -- // 7 = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -100, y = 138 },
 -- // Pet
--- // 8
+-- // 8 
 
 --get the addon namespace
 local addon, ns = ...
@@ -22,10 +22,6 @@ ns.cfg = cfg
 cfg.rf3_BuffList, cfg.rf3_DebuffList, cfg.rf3_CooldownList = {}, {}, {}
 
 local _, player_class = UnitClass("player")
-
------------------------------
--- DEFAULT CONFIG
------------------------------
 
 cfg.highlightPlayerSpells 	= false  --player spells will have a blue border
 cfg.updatetime           	= 0.3   --how fast should the timer update itself
@@ -1204,6 +1200,52 @@ cfg.rf3_BuffList = {
 	size = 26,
 	-- aura 3
 	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -181.2, y = -264 },
+	unit = "player",
+	validate_unit   = true,
+	ismine          = true,
+	desaturate      = false,
+	move_ingame     = true,
+	hide_ooc        = false,
+	alpha = {
+	  found = {
+		frame = 1,
+		icon = 1,
+	  },
+	  not_found = {
+		frame = 0,
+		icon = 0,
+	  },
+	},
+  },
+  -- Alacrity (Darkmist Vortex)
+  [3] = {
+	spellid = 126657,
+	size = 26,
+	-- aura 1
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -100, y = 0 },
+	unit = "player",
+	validate_unit   = true,
+	ismine          = true,
+	desaturate      = false,
+	move_ingame     = true,
+	hide_ooc        = false,
+	alpha = {
+	  found = {
+		frame = 1,
+		icon = 1,
+	  },
+	  not_found = {
+		frame = 0,
+		icon = 0,
+	  },
+	},
+  },
+  -- Unwavering Might (Lei Shen's Final Orders)
+  [4] = {
+	spellid = 126582,
+	size = 26,
+	-- aura 1
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -50, y = 0 },
 	unit = "player",
 	validate_unit   = true,
 	ismine          = true,
