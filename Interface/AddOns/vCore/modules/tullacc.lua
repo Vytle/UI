@@ -1,6 +1,7 @@
-﻿--[[
-	Curation settings for tullaCC
---]]
+-- All credit goes to Tuller
+-- tullaCooldownCount v5.3.0
+
+-- Curation settings for tullaCC
 
 local AddonName, Addon = ...
 local C = {}; Addon.Config = C
