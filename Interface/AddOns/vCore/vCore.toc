@@ -1,5 +1,8 @@
 ## Interface: 50300
 ## Title: |cffCC3333 v|rCore
 ## Notes: VytleUI Core
+## DefaultState: Enabled
 
 core.lua
+
+modules\bags.lua
