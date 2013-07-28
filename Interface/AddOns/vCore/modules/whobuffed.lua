@@ -1,4 +1,6 @@
-﻿local modName = ...;
+-- All credit goes to Aezay
+-- TipTac v13.05.22
+local modName = ...;
 local ttif = CreateFrame("Frame",modName);
 
 -- Options
