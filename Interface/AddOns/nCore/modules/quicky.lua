@@ -35,7 +35,6 @@ end)
 
 f.Cloak = CreateFrame('Button', nil, CharacterBackSlot)
 f.Cloak:SetFrameStrata('HIGH')
--- f.Cloak:SetToplevel(true)
 f.Cloak:SetSize(16, 32)
 f.Cloak:SetPoint('LEFT', CharacterBackSlot, 'CENTER', 9, 0)
 
