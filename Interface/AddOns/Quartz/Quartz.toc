@@ -1,21 +1,13 @@
-## Title: Quartz
+﻿## Title: Quartz
 ## Interface: 50300
 ## Notes: Modular casting bar.
 ## Author: Nevcairiel, Nymbia
 ## Version: 3.1.3
-## X-License: GPL v2
-## X-Credits: Ammo (some code based on PitBull_CastBar), kergoth (Tradeskill Merge module idea), Roartindon (Lag Embed mode for Latency module)
-## X-Curse-Packaged-Version: 3.1.3
-## X-Curse-Project-Name: Quartz
-## X-Curse-Project-ID: quartz
-## X-Curse-Repository-ID: wow/quartz/mainline
-
 ## Title-ruRU: Кварц
 ## Notes-ruRU: Модульная полоса применений.
 ## Notes-frFR: Barres d'incantation modulaires.
 ## Notes-zhCN: 模块化施法条。
 ## Notes-zhTW: 模組化施法條。
-
 ## SavedVariables: Quartz3DB
 ## OptionalDeps: Ace3, LibSharedMedia-3.0, AceGUI-3.0-SharedMediaWidgets, SharedMedia, FlightMap
 
