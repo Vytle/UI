@@ -17,6 +17,8 @@ f:SetScript('OnEvent', function(_, event, ...)
 		SetCVar('buffDurations', 1) -- Show buff durations
 		SetCVar('scriptErrors', 0) -- Disable Lua errors
 		SetCVar('autoLootDefault', 1) -- Enable auto loot by default
+		SetCVar('UIScale', 0.78) -- Set UI scale (1920x108)
+		SetCVar('useUiScale', 1) -- Use the UI Scale
 		-- enable classcolor automatically on login and on each character without doing /configure each time.
 		ToggleChatColorNamesByClassGroup(true, "SAY")
 		ToggleChatColorNamesByClassGroup(true, "EMOTE")
