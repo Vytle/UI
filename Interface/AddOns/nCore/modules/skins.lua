@@ -67,22 +67,22 @@ f:SetScript('OnEvent', function(self)
     end
 	-- Quartz
     if (IsAddOnLoaded('Quartz')) then
-            -- Player
-			Quartz3CastBarPlayer:CreateBeautyBorder(11)
-            Quartz3CastBarPlayer:SetBeautyBorderPadding(1)
-			Quartz3CastBarPlayer:SetBackdropColor(0, 0, 0, 1)
-            -- Target
-			Quartz3CastBarTarget:CreateBeautyBorder(11)
-            Quartz3CastBarTarget:SetBeautyBorderPadding(1)
-			Quartz3CastBarTarget:SetBackdropColor(0, 0, 0, 1)
-			-- Pet
-			Quartz3CastBarPet:CreateBeautyBorder(11)
-            Quartz3CastBarPet:SetBeautyBorderPadding(1)
-			Quartz3CastBarPet:SetBackdropColor(0, 0, 0, 1)
-			-- Focus
-			Quartz3CastBarFocus:CreateBeautyBorder(11)
-            Quartz3CastBarFocus:SetBeautyBorderPadding(1)
-			Quartz3CastBarFocus:SetBackdropColor(0, 0, 0, 1)
+   	-- Player
+	Quartz3CastBarPlayer:CreateBeautyBorder(11)
+	Quartz3CastBarPlayer:SetBeautyBorderPadding(1)
+	Quartz3CastBarPlayer:SetBackdropColor(0, 0, 0, 1)
+   	-- Target
+	Quartz3CastBarTarget:CreateBeautyBorder(11)
+	Quartz3CastBarTarget:SetBeautyBorderPadding(1)
+	Quartz3CastBarTarget:SetBackdropColor(0, 0, 0, 1)
+	-- Pet
+	Quartz3CastBarPet:CreateBeautyBorder(11)
+	Quartz3CastBarPet:SetBeautyBorderPadding(1)
+	Quartz3CastBarPet:SetBackdropColor(0, 0, 0, 1)
+	-- Focus
+	Quartz3CastBarFocus:CreateBeautyBorder(11)
+	Quartz3CastBarFocus:SetBeautyBorderPadding(1)
+	Quartz3CastBarFocus:SetBackdropColor(0, 0, 0, 1)
     end
 	-- Recount
     if (IsAddOnLoaded('Recount')) then
