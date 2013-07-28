@@ -9,29 +9,18 @@ cfg = {
 		['enable'] = true,			-- enables !Beautycase border for chat
 	},
 	
-	['pitbull'] = {
-		['enable'] = true,			-- enables !Beautycase border for pitbull
-	},
-	
 	-- Crafting Bind On Pickup Options
 	['CBOP'] = {
 		["enable"] = true,
 	},
 	
-	-- Font Options
-	['font'] = {
-		["enable"] = false,			-- enable font module
-		["style"] = "Expressway",	-- style of font to use
-		["size"] = 15,				-- size of font
-	},
-	
 	-- Merchant Options
 	['merchant'] = {
-		['enable'] = false,			-- enable merchant module.
-		['sellMisc'] = false, 		-- allows the user to add spacific items to sell at merchant (please see the local filter in merchant.lua)
-		['autoSellGrey'] = false,	-- autosell grey items at merchant.
-		['autoRepair'] = false,		-- autorepair at merchant.
-		['gpay'] = false,			-- let your guild pay for your repairs if they allow.
+		['enable'] = true,			-- enable merchant module.
+		['sellMisc'] = true, 		-- allows the user to add spacific items to sell at merchant (please see the local filter in merchant.lua)
+		['autoSellGrey'] = true,	-- autosell grey items at merchant.
+		['autoRepair'] = true,		-- autorepair at merchant.
+		['gpay'] = true,			-- let your guild pay for your repairs if they allow.
 	},
 	
 	-- Quest Options
@@ -46,23 +35,8 @@ cfg = {
 		['sound'] = false,			-- Play Sound
 		["type"] = "Warning",		-- Type of sound to play
 	},
-	
-	-- Vellum Enchanting Options
-	['velluminous'] = {
-		["enable"] = true,			-- Auto Enchant Vellums with one button.
-	},
 
 }
-
-local LSM = LibStub("LibSharedMedia-3.0")
-
---Register Media
-LSM:Register("sound", "Warning", [[Interface\AddOns\nExtras\Media\Warning.mp3]])
-LSM:Register("font", "Expressway", [[Interface\AddOns\nExtras\Media\Expressway.ttf]])
-
--- Load All SharedMedia
-cfg.selfbuffs.type = LSM:Fetch("sound", cfg.selfbuffs.type)
-cfg.font.style = LSM:Fetch("font", cfg.font.style)
 
 --------------
 -- Chat Addon
@@ -241,75 +215,6 @@ if cfg.CBOP.enable then
 	}
 end
 	
---------------------
--- Change Game Font
---------------------
--- Credit Game Font goes to Elv for his ElvUI project.
--- You can find his Addon at http://tukui.org/dl.php
--- Editied by Cokedriver
-
-if cfg.font.enable then
-
-	SlashCmdList['RELOADUI'] = function()
-		ReloadUI()
-	end
-	SLASH_RELOADUI1 = '/rl'
-
-	-- Font Setup
-	local function SetFont(obj, font, size, style, r, g, b, sr, sg, sb, sox, soy)
-		obj:SetFont(font, size, style)
-		if sr and sg and sb then obj:SetShadowColor(sr, sg, sb) end
-		if sox and soy then obj:SetShadowOffset(sox, soy) end
-		if r and g and b then obj:SetTextColor(r, g, b)
-		elseif r then obj:SetAlpha(r) end
-	end
-
-	local NORMAL     = cfg.font.style
-	local COMBAT     = cfg.font.style
-	local NUMBER     = cfg.font.style
-	local _, editBoxFontSize, _, _, _, _, _, _, _, _ = GetChatWindowInfo(1)
-
-	UIDROPDOWNMENU_DEFAULT_TEXT_HEIGHT = 12
-	CHAT_FONT_HEIGHTS = {12, 13, 14, 15, 16, 17, 18, 19, 20}
-
-	UNIT_NAME_FONT     = NORMAL
-	NAMEPLATE_FONT     = NORMAL
-	DAMAGE_TEXT_FONT   = COMBAT
-	STANDARD_TEXT_FONT = NORMAL
-
-
-	-- Base fonts
-	SetFont(GameTooltipHeader,                  NORMAL, cfg.font.size)
-	SetFont(NumberFont_OutlineThick_Mono_Small, NUMBER, cfg.font.size, "OUTLINE")
-	SetFont(NumberFont_Outline_Huge,            NUMBER, 28, "THICKOUTLINE", 28)
-	SetFont(NumberFont_Outline_Large,           NUMBER, 15, "OUTLINE")
-	SetFont(NumberFont_Outline_Med,             NUMBER, cfg.font.size*1.1, "OUTLINE")
-	SetFont(NumberFont_Shadow_Med,              NORMAL, cfg.font.size) --chat editbox uses this
-	SetFont(NumberFont_Shadow_Small,            NORMAL, cfg.font.size)
-	SetFont(QuestFont,                          NORMAL, cfg.font.size)
-	SetFont(QuestFont_Large,                    NORMAL, 14)
-	SetFont(SystemFont_Large,                   NORMAL, 15)
-	SetFont(SystemFont_Shadow_Huge1,			NORMAL, 20, "OUTLINE") -- Raid Warning, Boss emote frame too
-	SetFont(SystemFont_Med1,                    NORMAL, cfg.font.size)
-	SetFont(SystemFont_Med3,                    NORMAL, cfg.font.size*1.1)
-	SetFont(SystemFont_OutlineThick_Huge2,      NORMAL, 20, "THICKOUTLINE")
-	SetFont(SystemFont_Outline_Small,           NUMBER, cfg.font.size, "OUTLINE")
-	SetFont(SystemFont_Shadow_Large,            NORMAL, 15)
-	SetFont(SystemFont_Shadow_Med1,             NORMAL, cfg.font.size)
-	SetFont(SystemFont_Shadow_Med3,             NORMAL, cfg.font.size*1.1)
-	SetFont(SystemFont_Shadow_Outline_Huge2,    NORMAL, 20, "OUTLINE")
-	SetFont(SystemFont_Shadow_Small,            NORMAL, cfg.font.size*0.9)
-	SetFont(SystemFont_Small,                   NORMAL, cfg.font.size)
-	SetFont(SystemFont_Tiny,                    NORMAL, cfg.font.size)
-	SetFont(Tooltip_Med,                        NORMAL, cfg.font.size)
-	SetFont(Tooltip_Small,                      NORMAL, cfg.font.size)
-	SetFont(ZoneTextString,						NORMAL, 32, "OUTLINE")
-	SetFont(SubZoneTextString,					NORMAL, 25, "OUTLINE")
-	SetFont(PVPInfoTextString,					NORMAL, 22, "OUTLINE")
-	SetFont(PVPArenaTextString,					NORMAL, 22, "OUTLINE")
-	SetFont(CombatTextFont,                     COMBAT, 100, "OUTLINE") -- number here just increase the font quality.
-end
-
 ------------
 -- Merchant
 ------------
@@ -473,12 +378,6 @@ if cfg.selfbuffs.enable then
 
 		ROGUE = {
 			108211,		-- Leeching Poison
-			--2823, 		-- Deadly Poision
-			--55610, 		-- Unholy Aura (Deathknight)
-			--113742,		-- Swiftblade's Cunning (Rogue)
-			--30809,		-- Unleashed Rage (Shaman)
-			--128432,		-- Cackling Howl (Hunter Pet)
-			--128433,		-- Serpent's Swiftness (Hunter Pet)
 		},
 		DRUID = {
 			1126,  		-- Mark of the Wild (Druid)
@@ -831,48 +730,4 @@ if cfg.selfbuffs.enable then
 
 		frame:SetScript("OnEvent", EnchantsOnEvent)
 	end
-end
-
----------------
--- Velluminous
----------------
--- Credit for Velluminous goes to tekkub for his Velluminous addon.
--- You can find his addon at https://github.com/tekkub/Velluminous
--- Editied by Cokedriver
-
-if cfg.velluminous.enable then
-
-	if not TradeSkillFrame then
-		return
-	end
-
-	local butt = CreateFrame("Button", nil, TradeSkillCreateButton, "SecureActionButtonTemplate")
-	butt:SetAttribute("type", "macro")
-	butt:SetAttribute("macrotext", "/click TradeSkillCreateButton\n/use item:38682")
-
-	butt:SetText("Vellum")
-
-	butt:SetPoint("RIGHT", TradeSkillCreateButton, "LEFT")
-
-	butt:SetWidth(80) butt:SetHeight(22)
-
-	-- Fonts --
-	butt:SetDisabledFontObject(GameFontDisable)
-	butt:SetHighlightFontObject(GameFontHighlight)
-	butt:SetNormalFontObject(GameFontNormal)
-
-	-- Textures --
-	butt:SetNormalTexture("Interface\\Buttons\\UI-Panel-Button-Up")
-	butt:SetPushedTexture("Interface\\Buttons\\UI-Panel-Button-Down")
-	butt:SetHighlightTexture("Interface\\Buttons\\UI-Panel-Button-Highlight")
-	butt:SetDisabledTexture("Interface\\Buttons\\UI-Panel-Button-Disabled")
-	butt:GetNormalTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	butt:GetPushedTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	butt:GetHighlightTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	butt:GetDisabledTexture():SetTexCoord(0, 0.625, 0, 0.6875)
-	butt:GetHighlightTexture():SetBlendMode("ADD")
-
-	local hider = CreateFrame("Frame", nil, TradeSkillCreateAllButton)
-	hider:SetScript("OnShow", function() butt:Hide() end)
-	hider:SetScript("OnHide", function() butt:Show() end)
 end
