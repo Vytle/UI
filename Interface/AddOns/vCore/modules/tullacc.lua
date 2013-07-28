@@ -1,3 +1,26 @@
+﻿--[[
+	Curation settings for tullaCC
+--]]
+
+local AddonName, Addon = ...
+local C = {}; Addon.Config = C
+
+--font settings
+C.fontFace = STANDARD_TEXT_FONT  --what font to use
+C.fontSize = 18  --the base font size to use at a scale of 1
+
+--display settings
+C.minScale = 0.6 --the minimum scale we want to show cooldown counts at, anything below this will be hidden
+C.minDuration = 3 --the minimum number of seconds a cooldown's duration must be to display text
+C.expiringDuration = 5  --the minimum number of seconds a cooldown must be to display in the expiring format
+
+--text format strings
+C.expiringFormat = '|cffff0000%d|r' --format for timers that are soon to expire
+C.secondsFormat = '|cffffff00%d|r' --format for timers that have seconds remaining
+C.minutesFormat = '|cffffffff%dm|r' --format for timers that have minutes remaining
+C.hoursFormat = '|cff66ffff%dh|r' --format for timers that have hours remaining
+C.daysFormat = '|cff6666ff%dh|r' --format for timers that have days remaining
+
 --[[
 	tullaCooldownCount
 		A basic cooldown count addon
@@ -171,3 +194,77 @@ end
 --ActionButton1Cooldown is used here since its likely to always exist
 --and I'd rather not create my own cooldown frame to preserve a tiny bit of memory
 hooksecurefunc(getmetatable(_G['ActionButton1Cooldown']).__index, 'SetCooldown', Timer.Start)
+
+--[[
+	In WoW 4.3 and later, action buttons can completely bypass lua for updating cooldown timers
+	This set of code is there to check and force tullaCC to update timers on standard action buttons (henceforth defined as anything that reuses's blizzard's ActionButton.lua code
+--]]
+
+local ActionBarButtonEventsFrame = _G['ActionBarButtonEventsFrame']
+if not ActionBarButtonEventsFrame then return end
+
+local AddonName, Addon = ...
+local Timer = Addon.Timer
+
+
+--[[ cooldown timer updating ]]--
+
+local active = {}
+
+local function cooldown_OnShow(self)
+	active[self] = true
+end
+
+local function cooldown_OnHide(self)
+	active[self] = nil
+end
+
+--returns true if the cooldown timer should be updated and false otherwise
+local function cooldown_ShouldUpdateTimer(self, start, duration, charges, maxCharges)
+	local timer = self.timer
+	if not timer then
+		return true
+	end
+	return not(timer.start == start or timer.charges == charges or timer.maxCharges == maxCharges)
+end
+
+local function cooldown_Update(self)
+	local button = self:GetParent()
+	local action = button.action
+	
+	local start, duration, enable = GetActionCooldown(action)
+	local charges, maxCharges, chargeStart, chargeDuration = GetActionCharges(action)
+	
+	if cooldown_ShouldUpdateTimer(self, start, duration, charges, maxCharges) then
+		Timer.Start(self, start, duration, charges, maxCharges)
+	end
+end
+
+local abEventWatcher = CreateFrame('Frame'); abEventWatcher:Hide()
+abEventWatcher:SetScript('OnEvent', function(self, event)
+	for cooldown in pairs(active) do
+		cooldown_Update(cooldown)
+	end
+end)
+abEventWatcher:RegisterEvent('ACTIONBAR_UPDATE_COOLDOWN')
+
+
+--[[ hook action button registration ]]--
+
+local hooked = {}
+
+local function actionButton_Register(frame)
+	local cooldown = frame.cooldown
+	if not hooked[cooldown] then
+		cooldown:HookScript('OnShow', cooldown_OnShow)
+		cooldown:HookScript('OnHide', cooldown_OnHide)
+		hooked[cooldown] = true
+	end
+end
+
+if ActionBarButtonEventsFrame.frames then
+	for i, frame in pairs(ActionBarButtonEventsFrame.frames) do
+		actionButton_Register(frame)
+	end
+end
+hooksecurefunc('ActionBarButtonEventsFrame_RegisterFrame', actionButton_Register)
