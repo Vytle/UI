@@ -1,4 +1,6 @@
-﻿local config = {
+-- all credit goes to Blooblahguy
+-- bBag v1.1
+local config = {
 	enable = true,
 	spacing = 5,
 	bpr = 9,
