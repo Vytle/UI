@@ -5,6 +5,7 @@
 
 core.lua
 
+modules\align.lua
 modules\bags.lua
 modules\chatthrottle.lua
 modules\tullacc.lua
