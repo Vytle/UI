@@ -4,7 +4,6 @@
 
 modules\altbuy.lua
 modules\autogreed.lua
-modules\bubbles.lua
 modules\coords.lua
 modules\durability.lua
 modules\errors.lua
