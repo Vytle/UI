@@ -1,19 +1,6 @@
 --[[-------------------------------------------------------------------------
 -- Simple Interrupt Announce
---
 -- Copyright 2011-2013 BeathsCurse (Saphod - Draenor EU)
---
--- Licensed under the Apache License, Version 2.0 (the "License");
--- you may not use this file except in compliance with the License.
--- You may obtain a copy of the License at
---
--- http://www.apache.org/licenses/LICENSE-2.0
---
--- Unless required by applicable law or agreed to in writing, software
--- distributed under the License is distributed on an "AS IS" BASIS,
--- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
--- See the License for the specific language governing permissions and
--- limitations under the License.
 -------------------------------------------------------------------------]]--
 
 local addonName, addon = ...
@@ -314,12 +301,12 @@ frame:RegisterEvent('PLAYER_LOGOUT')
 
 -- Print with SIA prefix
 function frame:Print(...)
-	return print('|cFFF0F050SIA|r:', ...)
+	return print('', ...)
 end
 
 -- Formatted print with SIA prefix
 function frame:Printf(s, ...)
-	return print('|cFFF0F050SIA|r:', string.format(s, ...))
+	return print('', string.format(s, ...))
 end
 
 -- Announce message to self or channel based on mode
