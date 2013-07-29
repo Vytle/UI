@@ -6,5 +6,6 @@
 core.lua
 
 modules\bags.lua
+modules\chatthrottle.lua
 modules\tullacc.lua
 modules\whobuffed.lua
