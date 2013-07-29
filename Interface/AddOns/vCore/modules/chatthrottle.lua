@@ -1,25 +1,4 @@
---
 -- ChatThrottleLib by Mikk
---
--- Manages AddOn chat output to keep player from getting kicked off.
---
--- ChatThrottleLib:SendChatMessage/:SendAddonMessage functions that accept 
--- a Priority ("BULK", "NORMAL", "ALERT") as well as prefix for SendChatMessage.
---
--- Priorities get an equal share of available bandwidth when fully loaded.
--- Communication channels are separated on extension+chattype+destination and
--- get round-robinned. (Destination only matters for whispers and channels,
--- obviously)
---
--- Will install hooks for SendChatMessage and SendAddonMessage to measure
--- bandwidth bypassing the library and use less bandwidth itself.
---
---
--- Fully embeddable library. Just copy this file into your addon directory,
--- add it to the .toc, and it's done.
---
--- Can run as a standalone addon also, but, really, just embed it! :-)
---
 
 local CTL_VERSION = 22
 
@@ -56,10 +35,8 @@ ChatThrottleLib.version = CTL_VERSION
 ------------------ TWEAKABLES -----------------
 
 ChatThrottleLib.MAX_CPS = 800			  -- 2000 seems to be safe if NOTHING ELSE is happening. let's call it 800.
-ChatThrottleLib.MSG_OVERHEAD = 40		-- Guesstimate overhead for sending a message; source+dest+chattype+protocolstuff
-
+ChatThrottleLib.MSG_OVERHEAD = 40		-- Guesstimate overhead for sending a message; source+dest+chattype+protocolstuf
 ChatThrottleLib.BURST = 4000				-- WoW's server buffer seems to be about 32KB. 8KB should be safe, but seen disconnects on _some_ servers. Using 4KB now.
-
 ChatThrottleLib.MIN_FPS = 20				-- Reduce output CPS to half (and don't burst) if FPS drops below this value
 
 
@@ -72,11 +49,6 @@ local math_max = math.max
 local next = next
 local strlen = string.len
 local GetFrameRate = GetFrameRate
-
-
-
------------------------------------------------------------------------
--- Double-linked ring implementation
 
 local Ring = {}
 local RingMeta = { __index = Ring }
@@ -111,12 +83,6 @@ function Ring:Remove(obj)
 	end
 end
 
-
-
------------------------------------------------------------------------
--- Recycling bin for pipes 
--- A pipe is a plain integer-indexed queue, which also happens to be a ring member
-
 ChatThrottleLib.PipeBin = nil -- pre-v19, drastically different
 local PipeBin = setmetatable({}, {__mode="k"})
 
@@ -139,12 +105,6 @@ local function NewPipe()
 	return {}
 end
 
-
-
-
------------------------------------------------------------------------
--- Recycling bin for messages
-
 ChatThrottleLib.MsgBin = nil -- pre-v19, drastically different
 local MsgBin = setmetatable({}, {__mode="k"})
 
@@ -162,11 +122,6 @@ local function NewMsg()
 	end
 	return {}
 end
-
-
------------------------------------------------------------------------
--- ChatThrottleLib:Init
--- Initialize queues, set up frame for OnUpdate, etc
 
 
 function ChatThrottleLib:Init()	
@@ -220,10 +175,6 @@ function ChatThrottleLib:Init()
 	self.nBypass = 0
 end
 
-
------------------------------------------------------------------------
--- ChatThrottleLib.Hook_SendChatMessage / .Hook_SendAddonMessage
-
 local bMyTraffic = false
 
 function ChatThrottleLib.Hook_SendChatMessage(text, chattype, language, destination, ...)
@@ -247,10 +198,6 @@ function ChatThrottleLib.Hook_SendAddonMessage(prefix, text, chattype, destinati
 end
 
 
-
------------------------------------------------------------------------
--- ChatThrottleLib:UpdateAvail
--- Update self.avail with how much bandwidth is currently available
 
 function ChatThrottleLib:UpdateAvail()
 	local now = GetTime()
@@ -278,9 +225,6 @@ function ChatThrottleLib:UpdateAvail()
 	return avail
 end
 
-
------------------------------------------------------------------------
--- Despooling logic
 
 function ChatThrottleLib:Despool(Prio)
 	local ring = Prio.Ring
@@ -367,12 +311,6 @@ function ChatThrottleLib.OnUpdate(this,delay)
 	end
 
 end
-
-
-
-
------------------------------------------------------------------------
--- Spooling logic
 
 
 function ChatThrottleLib:Enqueue(prioname, pipename, msg)
@@ -489,24 +427,7 @@ function ChatThrottleLib:SendAddonMessage(prio, prefix, text, chattype, target, 
 	self:Enqueue(prio, queueName or (prefix..chattype..(target or "")), msg)
 end
 
-
-
-
------------------------------------------------------------------------
--- Get the ball rolling!
-
 ChatThrottleLib:Init()
-
---[[ WoWBench debugging snippet
-if(WOWB_VER) then
-	local function SayTimer()
-		print("SAY: "..GetTime().." "..arg1)
-	end
-	ChatThrottleLib.Frame:SetScript("OnEvent", SayTimer)
-	ChatThrottleLib.Frame:RegisterEvent("CHAT_MSG_SAY")
-end
-]]
-
 
 -- print
 
