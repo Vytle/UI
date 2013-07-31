@@ -2,21 +2,16 @@ local _, nPlates = ...
 local cfg = nPlates.Config
 
     -- Local stuff
-
 local len = string.len
 local find = string.find
 local gsub = string.gsub
-
 local select = select
 local tonumber = tonumber
-
 local UnitName = UnitName
 local UnitCastingInfo = UnitCastingInfo
 local UnitChannelInfo = UnitChannelInfo
-
 local borderColor = {0.47, 0.47, 0.47}
 local noThreatColor = {0, 1, 0}
-
 local glowTexture = 'Interface\\AddOns\\nPlates\\media\\textureNewGlow'
 local overlayTexture = 'Interface\\AddOns\\nPlates\\media\\textureOverlay'
 local whiteOverlay = 'Interface\\AddOns\\nPlates\\media\\textureIconOverlay'
@@ -372,9 +367,7 @@ local function SkinPlate(self, nameFrame)
     self.Castbar:ClearAllPoints()
     self.Castbar:SetPoint('TOPRIGHT', self.Health, 'BOTTOMRIGHT', 0, -9)
     self.Castbar:SetPoint('BOTTOMLEFT', self.Health, 'BOTTOMLEFT', 0, -20)
-
     self.Castbar:HookScript('OnValueChanged', UpdateCastbarValue)
-
     self.Castbar.Overlay:SetTexCoord(0, 1, 0, 1)
     self.Castbar.Overlay:SetDrawLayer('BORDER')
     self.Castbar.Overlay:SetTexture(overlayTexture)
