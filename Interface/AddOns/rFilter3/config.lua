@@ -1841,8 +1841,8 @@ cfg.rf3_BuffList = {
   [5] = {
 	spellid = 17941,
 	size = 26,
-	-- aura 1
-	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -266, y = -264 },
+	-- aura 2
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -223.6, y = -264 },
 	unit = "player",
 	validate_unit   = true,
 	ismine          = true,
@@ -1912,6 +1912,29 @@ cfg.rf3_BuffList = {
 	size = 26,
 	-- aura 1
 	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -50, y = 0 },
+	unit = "player",
+	validate_unit   = true,
+	ismine          = true,
+	desaturate      = false,
+	move_ingame     = true,
+	hide_ooc        = false,
+	alpha = {
+	  found = {
+		frame = 1,
+		icon = 1,
+	  },
+	  not_found = {
+		frame = 0,
+		icon = 0,
+	  },
+	},
+  },
+   -- Molten Core
+  [9] = {
+	spellid = 122351,
+	size = 26,
+	-- aura 2
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -223.6, y = -264 },
 	unit = "player",
 	validate_unit   = true,
 	ismine          = true,
@@ -2080,6 +2103,29 @@ cfg.rf3_DebuffList = {
 	unit = "target",
 	validate_unit   = true,
 	ismine          = false,
+	desaturate      = false,
+	move_ingame     = true,
+	hide_ooc        = false,
+	alpha = {
+	  found = {
+		frame = 1,
+		icon = 1,
+	  },
+	  not_found = {
+		frame = 0,
+		icon = 0,
+	  },
+	},
+  },
+   -- Metamorphosis: Doom
+  [8] = {
+	spellid = 124913,
+	size = 26,
+	-- aura 2
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -223.6, y = -264 },
+	unit = "target",
+	validate_unit   = true,
+	ismine          = true,
 	desaturate      = false,
 	move_ingame     = true,
 	hide_ooc        = false,
