@@ -1975,12 +1975,81 @@ cfg.rf3_BuffList = {
 	  },
 	},
   },
-   -- Molten Core
+  -- Acceleration (Volatile Talisman of the Shado-Pan Assault)
   [9] = {
+	spellid = 138703,
+	size = 26,
+	-- aura 1
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -50, y = 0 },
+	unit = "player",
+	validate_unit   = true,
+	ismine          = true,
+	desaturate      = false,
+	move_ingame     = true,
+	hide_ooc        = false,
+	alpha = {
+	  found = {
+		frame = 1,
+		icon = 1,
+	  },
+	  not_found = {
+		frame = 0,
+		icon = 0,
+	  },
+	},
+  },
+   -- Molten Core
+  [10] = {
 	spellid = 122351,
 	size = 26,
 	-- aura 2
 	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -223.6, y = -264 },
+	unit = "player",
+	validate_unit   = true,
+	ismine          = true,
+	desaturate      = false,
+	move_ingame     = true,
+	hide_ooc        = false,
+	alpha = {
+	  found = {
+		frame = 1,
+		icon = 1,
+	  },
+	  not_found = {
+		frame = 0,
+		icon = 0,
+	  },
+	},
+  },
+   -- Sacrificial Pact
+  [11] = {
+	spellid = 108416,
+	size = 26,
+	-- aura 2
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = 50, y = 0 },
+	unit = "player",
+	validate_unit   = true,
+	ismine          = true,
+	desaturate      = false,
+	move_ingame     = true,
+	hide_ooc        = false,
+	alpha = {
+	  found = {
+		frame = 1,
+		icon = 1,
+	  },
+	  not_found = {
+		frame = 0,
+		icon = 0,
+	  },
+	},
+  },
+   -- Dark Bargain
+  [12] = {
+	spellid = 110913,
+	size = 26,
+	-- aura 2
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = 100, y = 0 },
 	unit = "player",
 	validate_unit   = true,
 	ismine          = true,
@@ -2165,10 +2234,33 @@ cfg.rf3_DebuffList = {
   },
    -- Metamorphosis: Doom
   [8] = {
-	spellid = 124913,
+	spellid = 603,
 	size = 26,
-	-- aura 2
-	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -223.6, y = -264 },
+	-- aura 6
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -54, y = -264 },
+	unit = "target",
+	validate_unit   = true,
+	ismine          = true,
+	desaturate      = false,
+	move_ingame     = true,
+	hide_ooc        = false,
+	alpha = {
+	  found = {
+		frame = 1,
+		icon = 1,
+	  },
+	  not_found = {
+		frame = 0,
+		icon = 0,
+	  },
+	},
+  },
+   -- Hand of Gul'dan
+  [9] = {
+	spellid = 47960,
+	size = 26,
+	-- aura 4
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -138.8, y = -264 },
 	unit = "target",
 	validate_unit   = true,
 	ismine          = true,
