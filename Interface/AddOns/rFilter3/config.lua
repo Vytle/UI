@@ -1016,6 +1016,29 @@ cfg.rf3_BuffList = {
 	  },
 	},
   },
+-- Arcane Missiles!
+	[9] = {
+	spellid = 79683,
+	size = 26,
+	-- aura 3
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -181.2, y = -264 },
+	unit = "player",
+	validate_unit   = true,
+	ismine          = true,
+	desaturate      = false,
+	move_ingame     = true,
+	hide_ooc        = false,
+	alpha = {
+	  found = {
+		frame = 1,
+		icon = 1,
+	  },
+	  not_found = {
+		frame = 0,
+		icon = 0,
+	  },
+	},
+  },
 }
 -- default mage debuffs
 cfg.rf3_DebuffList = {
@@ -1069,6 +1092,29 @@ cfg.rf3_DebuffList = {
 	size = 26,
 	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -54, y = -264 },
 	unit = "target",
+	validate_unit   = true,
+	ismine          = true,
+	desaturate      = false,
+	move_ingame     = true,
+	hide_ooc        = false,
+	alpha = {
+	  found = {
+		frame = 1,
+		icon = 1,
+	  },
+	  not_found = {
+		frame = 0,
+		icon = 0,
+	  },
+	},
+  },
+-- Arcane Charge
+	[4] = {
+	spellid = 36032,
+	size = 26,
+	-- aura 5
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -96.4, y = -264 },
+	unit = "player",
 	validate_unit   = true,
 	ismine          = true,
 	desaturate      = false,
