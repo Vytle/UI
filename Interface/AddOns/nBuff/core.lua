@@ -1,6 +1,5 @@
 local _, nBuff = ...
 local cfg = nBuff.Config
-
 local _G = _G
 local unpack = unpack
 
@@ -47,7 +46,6 @@ ConsolidatedBuffsCount:ClearAllPoints()
 ConsolidatedBuffsCount:SetPoint('CENTER', ConsolidatedBuffsIcon, 0, 1)
 ConsolidatedBuffsCount:SetFont('Fonts\\ARIALN.ttf', cfg.buffFontSize+2, 'THINOUTLINE')
 ConsolidatedBuffsCount:SetShadowOffset(0, 0)
-
 ConsolidatedBuffsTooltip:SetScale(1.2)
 
 local function UpdateFirstButton(self)
