@@ -1,4 +1,3 @@
-
 Quartz3DB = {
 	["namespaces"] = {
 		["Swing"] = {
@@ -77,34 +76,7 @@ Quartz3DB = {
 		},
 	},
 	["profileKeys"] = {
-		["Scoil - Outland"] = "Default",
-		["Xenzeh - Grim Batol"] = "Vytle",
-		["Klimi - Jaedenar"] = "Vytle",
-		["Climi - Outland"] = "Vytle",
-		["Vessie - Burning Legion"] = "Default",
-		["Skoil - Grim Batol"] = "Vytle",
-		["Vinkeh - Grim Batol"] = "Vytle",
-		["Klimeh - Grim Batol"] = "Vytle",
-		["Drape - Jaedenar"] = "Default",
-		["Skurn - Outland"] = "Default",
-		["Vonok - Jaedenar"] = "Vytle",
-		["Róza - Kazzak"] = "Default",
-		["Vessie - Jaedenar"] = "Vytle",
-		["Scoil - Jaedenar"] = "Vytle",
-		["Vonkk - Jaedenar"] = "Vytle",
-		["Vessie - Twisting Nether"] = "Default",
-		["Xenz - Jaedenar"] = "Vytle",
-		["Xenzeh - Twisting Nether"] = "Default",
-		["Mizt - Jaedenar"] = "Vytle",
-		["Zawk - Jaedenar"] = "Vytle",
-		["Kuli - Jaedenar"] = "Vytle",
-		["Claratiee - Jaedenar"] = "Default",
 		["Vink - Jaedenar"] = "Vytle",
-		["Frux - Jaedenar"] = "Vytle",
-		["Kutski - Grim Batol"] = "Vytle",
-		["Scoil - Kazzak"] = "Default",
-		["Stryz - Jaedenar"] = "Vytle",
-		["Venk - Grim Batol"] = "Vytle",
 	},
 	["profiles"] = {
 		["Vytle"] = {
