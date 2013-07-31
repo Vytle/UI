@@ -1,4 +1,3 @@
-
 local _, nPlates = ...
 local cfg = nPlates.Config
 
@@ -28,7 +27,6 @@ f.elapsed = 0
 f.elapsedLong = 0
 
     -- Totem data and functions
-
 local function TotemName(SpellID)
     local name = GetSpellInfo(SpellID)
     return name
@@ -86,7 +84,6 @@ local function RGBHex(r, g, b)
 end
 
     -- The plate functions
-
 local function GetUnitReaction(r, g, b)
     if (g + b == 0) then
         return true
@@ -315,17 +312,14 @@ local function SkinPlate(self, nameFrame)
     self.Name = nameFrame:GetRegions()
 
         -- Hide some nameplate objects
-
     self.Glow:SetTexCoord(0, 0, 0, 0)
     self.BossIcon:SetTexCoord(0, 0, 0, 0)
     self.EliteIcon:SetTexCoord(0, 0, 0, 0)
     self.Castbar.Shield:SetTexCoord(0, 0, 0, 0)
-
     self.Name:SetWidth(0.001)
     self.Level:SetWidth(0.0001)
 
         -- Modify the overlay
-
     self.Overlay:SetTexCoord(0, 1, 0, 1)
     self.Overlay:ClearAllPoints()
     self.Overlay:SetPoint('TOPRIGHT', self.Health, 35.66666667, 5.66666667)
@@ -334,7 +328,6 @@ local function SkinPlate(self, nameFrame)
     self.Overlay:SetTexture(overlayTexture)
 
         -- Healtbar and background
-
     self.Health:SetBackdrop({
         bgFile = 'Interface\\Buttons\\WHITE8x8',
         insets = { left = -1, right = -1, top = -1, bottom = -1 }
@@ -347,7 +340,6 @@ local function SkinPlate(self, nameFrame)
     end)
 
         -- Create health value font string
-
     if (not self.Health.Value) then
         self.Health.Value = self.Health:CreateFontString(nil, 'OVERLAY')
         self.Health.Value:SetPoint('CENTER', self.Health, 0, 0)
@@ -359,7 +351,6 @@ local function SkinPlate(self, nameFrame)
         self.NewName = self:CreateFontString(nil, 'ARTWORK')
         self.NewName:SetFont('Fonts\\ARIALN.ttf', 11, 'THINOUTLINE')
         self.NewName:SetShadowOffset(0, 0)
-        -- self.NewName:SetPoint('CENTER', self.Health, 'CENTER', 0, 9)
         self.NewName:SetPoint('BOTTOM', self.Health, 'TOP', 0, 2)
         self.NewName:SetSize(110, 13)
     end
@@ -372,7 +363,6 @@ local function SkinPlate(self, nameFrame)
     end
 
         -- Castbar
-
     self.Castbar:SetBackdrop({
         bgFile = 'Interface\\Buttons\\WHITE8x8',
         insets = { left = -1, right = -1, top = -1, bottom = -1 }
@@ -393,7 +383,6 @@ local function SkinPlate(self, nameFrame)
     self.Castbar.Overlay:SetPoint('BOTTOMLEFT', self.Castbar, -36.66666667, -5.66666667)
 
         -- Castbar casttime font string
-
     if (not self.Castbar.CastTime) then
         self.Castbar.CastTime = self.Castbar:CreateFontString(nil, 'OVERLAY')
         self.Castbar.CastTime:SetPoint('RIGHT', self.Castbar, 1.6666667, 0)
@@ -403,7 +392,6 @@ local function SkinPlate(self, nameFrame)
     end
 
         -- Castbar castname font string
-
     if (not self.Castbar.Name) then
         self.Castbar.Name = self.Castbar:CreateFontString(nil, 'OVERLAY')
         self.Castbar.Name:SetPoint('LEFT', self.Castbar, 1.5, 0)
@@ -415,7 +403,6 @@ local function SkinPlate(self, nameFrame)
     end
 
         -- Castbar spellicon and overlay
-
     self.Castbar.Icon:SetParent(self.Castbar)
     self.Castbar.Icon:ClearAllPoints()
     self.Castbar.Icon:SetPoint('BOTTOMLEFT', self.Castbar, 'BOTTOMRIGHT', 7, 3)
@@ -431,18 +418,15 @@ local function SkinPlate(self, nameFrame)
     end
 
         -- Mouseover highlight
-
     self.Highlight:SetTexture(1, 1, 1, 0.2)
 
         -- Raidicons
-
     self.RaidIcon:ClearAllPoints()
     self.RaidIcon:SetDrawLayer('OVERLAY')
     self.RaidIcon:SetPoint('CENTER', self.Health, 'TOP', 0, 12)
     self.RaidIcon:SetSize(16, 16)
 
         -- Nameplates like cookies
-
     UpdatePlate(self)
 
     self:SetScript('OnUpdate', nil)
@@ -492,7 +476,6 @@ local function SkinPlate(self, nameFrame)
 end
 
     -- Scan the worldframe for nameplates
-
 local numFrames = 0
 local lastUpdate = 0
 local index = 1
