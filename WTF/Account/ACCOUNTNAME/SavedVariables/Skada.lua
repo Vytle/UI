@@ -1,24 +1,10 @@
-
 SkadaDB = {
 	["namespaces"] = {
 		["LibDualSpec-1.0"] = {
 		},
 	},
 	["profileKeys"] = {
-		["Vessie - Jaedenar"] = "Vytle",
-		["Scoil - Jaedenar"] = "Vytle",
-		["Vonkk - Jaedenar"] = "Vytle",
-		["Xenz - Jaedenar"] = "Vytle",
-		["Klimi - Jaedenar"] = "Vytle",
-		["Zawk - Jaedenar"] = "Vytle",
-		["Kuli - Jaedenar"] = "Vytle",
-		["Frux - Jaedenar"] = "Vytle",
 		["Vink - Jaedenar"] = "Vytle",
-		["Vinkeh - Grim Batol"] = "Vytle",
-		["Kutski - Grim Batol"] = "Vytle",
-		["Mizt - Jaedenar"] = "Vytle",
-		["Vonok - Jaedenar"] = "Vytle",
-		["Skoil - Grim Batol"] = "Default",
 	},
 	["profiles"] = {
 		["Vytle"] = {
