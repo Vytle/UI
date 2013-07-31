@@ -1562,6 +1562,52 @@ cfg.rf3_DebuffList = {
 	  },
 	},
   },
+  -- Hemorrhage (Subtlety)
+  [2] = {
+	spellid = 16511,
+	size = 26,
+	-- aura 5
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -96.4, y = -264 },
+	unit = "target",
+	validate_unit   = true,
+	ismine          = true,
+	desaturate      = false,
+	move_ingame     = true,
+	hide_ooc        = false,
+	alpha = {
+	  found = {
+		frame = 1,
+		icon = 1,
+	  },
+	  not_found = {
+		frame = 0,
+		icon = 0,
+	  },
+	},
+  },
+  -- Find Weakness (Subtlety)
+  [3] = {
+	spellid = 91023,
+	size = 26,
+	-- aura 5
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -138.8, y = -264 },
+	unit = "target",
+	validate_unit   = true,
+	ismine          = true,
+	desaturate      = false,
+	move_ingame     = true,
+	hide_ooc        = false,
+	alpha = {
+	  found = {
+		frame = 1,
+		icon = 1,
+	  },
+	  not_found = {
+		frame = 0,
+		icon = 0,
+	  },
+	},
+  },
 }
 end
 
