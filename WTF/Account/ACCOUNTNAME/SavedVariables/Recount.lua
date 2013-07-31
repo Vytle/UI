@@ -1,20 +1,6 @@
-
 RecountDB = {
 	["profileKeys"] = {
-		["Vessie - Jaedenar"] = "Vytle",
-		["Scoil - Jaedenar"] = "Vytle",
-		["Vonkk - Jaedenar"] = "Vytle",
-		["Xenz - Jaedenar"] = "Vytle",
-		["Klimi - Jaedenar"] = "Vytle",
-		["Zawk - Jaedenar"] = "Vytle",
-		["Kuli - Jaedenar"] = "Vytle",
 		["Vink - Jaedenar"] = "Vytle",
-		["Frux - Jaedenar"] = "Vytle",
-		["Mizt - Jaedenar"] = "Vytle",
-		["Kutski - Grim Batol"] = "Vytle",
-		["Vinkeh - Grim Batol"] = "Vytle",
-		["Vonok - Jaedenar"] = "Vytle",
-		["Skoil - Grim Batol"] = "Skoil - Grim Batol",
 	},
 	["profiles"] = {
 		["Vytle"] = {
@@ -81,28 +67,6 @@ RecountDB = {
 			["BarTexture"] = "Blizzard",
 			["CurDataSet"] = "LastFightData",
 			["HideCollect"] = true,
-		},
-		["Skoil - Grim Batol"] = {
-			["GraphWindowY"] = 0,
-			["MainWindow"] = {
-				["Position"] = {
-					["w"] = 140.0000152587891,
-				},
-			},
-			["Colors"] = {
-				["Bar"] = {
-					["Bar Text"] = {
-						["a"] = 1,
-					},
-					["Total Bar"] = {
-						["a"] = 1,
-					},
-				},
-			},
-			["DetailWindowY"] = 0,
-			["CurDataSet"] = "OverallData",
-			["GraphWindowX"] = 0,
-			["DetailWindowX"] = 0,
 		},
 	},
 }
