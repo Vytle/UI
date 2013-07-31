@@ -1,47 +1,8 @@
-
 nibPointDisplayDB = {
 	["profileKeys"] = {
-		["Vessie - Jaedenar"] = "Default",
-		["Scoil - Jaedenar"] = "Default",
-		["Vonkk - Jaedenar"] = "Default",
-		["Xenz - Jaedenar"] = "Default",
-		["Klimi - Jaedenar"] = "Default",
-		["Zawk - Jaedenar"] = "Default",
-		["Kuli - Jaedenar"] = "Default",
-		["Vink - Jaedenar"] = "Default",
-		["Mizt - Jaedenar"] = "Vytle",
-		["Vonok - Jaedenar"] = "Default",
-		["Frux - Jaedenar"] = "Vytle",
+		["Vink - Jaedenar"] = "Vytle",
 	},
 	["profiles"] = {
-		["Default"] = {
-			["WARLOCK"] = {
-				["types"] = {
-					["be"] = {
-						["position"] = {
-							["y"] = -333,
-							["x"] = -158,
-						},
-					},
-				},
-			},
-			["SHAMAN"] = {
-				["types"] = {
-					["tw"] = {
-						["enabled"] = false,
-					},
-					["ls"] = {
-						["enabled"] = false,
-					},
-					["ws"] = {
-						["enabled"] = false,
-					},
-					["mw"] = {
-						["enabled"] = false,
-					},
-				},
-			},
-		},
 		["Vytle"] = {
 			["WARLOCK"] = {
 				["types"] = {
