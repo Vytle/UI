@@ -1,4 +1,3 @@
-
 local _, nMinimap = ...
 local cfg = nMinimap.Config
 
@@ -8,13 +7,11 @@ TimeManagerClockTicker:SetFont('Fonts\\ARIALN.ttf', 15, 'OUTLINE')
 TimeManagerClockTicker:SetShadowOffset(0, 0)
 TimeManagerClockTicker:SetTextColor(classColor.r, classColor.g, classColor.b)
 TimeManagerClockTicker:SetPoint('TOPRIGHT', TimeManagerClockButton, 0, 0)
-
 TimeManagerClockButton:GetRegions():Hide()
 TimeManagerClockButton:ClearAllPoints()
 TimeManagerClockButton:SetWidth(40)
 TimeManagerClockButton:SetHeight(18)
 TimeManagerClockButton:SetPoint('BOTTOM', Minimap, 0, 2)
-
 TimeManagerAlarmFiredTexture:SetTexture(nil)
 
 hooksecurefunc(TimeManagerAlarmFiredTexture, 'Show', function()

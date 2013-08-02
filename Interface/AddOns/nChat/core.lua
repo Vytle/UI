@@ -37,19 +37,15 @@ _G.CHAT_FONT_HEIGHTS = {
 _G.CHAT_FLAG_AFK = '[AFK] '
 _G.CHAT_FLAG_DND = '[DND] '
 _G.CHAT_FLAG_GM = '[GM] '
-
 _G.CHAT_GUILD_GET = '(|Hchannel:Guild|hG|h) %s:\32'
 _G.CHAT_OFFICER_GET = '(|Hchannel:o|hO|h) %s:\32'
-
 _G.CHAT_PARTY_GET = '(|Hchannel:party|hP|h) %s:\32'
 _G.CHAT_PARTY_LEADER_GET = '(|Hchannel:party|hPL|h) %s:\32'
 _G.CHAT_PARTY_GUIDE_GET = '(|Hchannel:party|hDG|h) %s:\32'
 _G.CHAT_MONSTER_PARTY_GET = '(|Hchannel:raid|hR|h) %s:\32'
-
 _G.CHAT_RAID_GET = '(|Hchannel:raid|hR|h) %s:\32'
 _G.CHAT_RAID_WARNING_GET = '(RW!) %s:\32'
 _G.CHAT_RAID_LEADER_GET = '(|Hchannel:raid|hL|h) %s:\32'
-
 _G.CHAT_BATTLEGROUND_GET = '(|Hchannel:Battleground|hBG|h) %s:\32'
 _G.CHAT_BATTLEGROUND_LEADER_GET = '(|Hchannel:Battleground|hBL|h) %s:\32'
 

@@ -1,10 +1,8 @@
 local _G = _G
 local PitBull4 = _G.PitBull4
 local L = PitBull4.L
-
 local DEBUG = PitBull4.DEBUG
 local expect = PitBull4.expect
-
 local mop_520 = select(4,GetBuildInfo()) >= 50200
 
 -- CONSTANTS ----------------------------------------------------------------
@@ -46,9 +44,6 @@ local Singleton_OnAttributeChanged = [[
   end
 ]]
 
---- Make a singleton unit frame.
--- @param unit the UnitID of the frame in question
--- @usage local frame = PitBull4:MakeSingletonFrame("player")
 function PitBull4:MakeSingletonFrame(unit)
 	if DEBUG then
 		expect(unit, 'typeof', 'string')
@@ -90,16 +85,6 @@ function PitBull4:MakeSingletonFrame(unit)
 end
 PitBull4.MakeSingletonFrame = PitBull4:OutOfCombatWrapper(PitBull4.MakeSingletonFrame)
 
---- A Unit Frame created by PitBull4
--- @class table
--- @name UnitFrame
--- @field is_singleton whether the Unit Frame is a singleton or member
--- @field classification the classification of the Unit Frame
--- @field classification_db the database table for the Unit Frame's classification
--- @field layout the layout of the Unit Frame's classification
--- @field unit the UnitID of the Unit Frame. Can be nil.
--- @field guid the current GUID of the Unit Frame. Can be nil.
--- @field overlay an overlay frame for texts to be placed on.
 local UnitFrame = {}
 local SingletonUnitFrame = {}
 local MemberUnitFrame = {}
@@ -114,9 +99,6 @@ PitBull4.UnitFrame__scripts = UnitFrame__scripts
 PitBull4.SingletonUnitFrame__scripts = SingletonUnitFrame__scripts
 PitBull4.MemberUnitFrame__scripts = MemberUnitFrame__scripts
 
--- All the old non-sense to try to work around menus that don't work.
--- It also injects menu items for ready and roll checks, but we can't
--- do that with this technique anymore.
 local BLACKLISTED_UNIT_MENU_OPTIONS = {
 	SET_FOCUS = "PB4_SET_FOCUS",
 	CLEAR_FOCUS = "PB4_CLEAR_FOCUS",
@@ -325,8 +307,6 @@ function SingletonUnitFrame__scripts:OnDragStart()
 	moving_frame = self
 
 	if db.frame_snap then
-		-- stop thing is to make WoW move the frame the initial few pixels between
-		-- OnMouseDown and OnDragStart
 		self:StopMovingOrSizing()
 	
 		LibStub("LibSimpleSticky-1.0"):StartMoving(self, PitBull4.all_frames_list, 0, 0, 0, 0)
@@ -394,21 +374,13 @@ end
 function UnitFrame__scripts:OnAttributeChanged(key, value)
 	if key == "unit" or key == "unitsuffix" then
 		local new_unit = PitBull4.Utils.GetBestUnitID(SecureButton_GetModifiedUnit(self, "LeftButton")) or nil
-	
 		local updated = false
 		local old_unit = self.unit
 
-		-- As of 4.0.3 the the unit watch state handler no longer calls OnShow
-		-- when the frame is already visible.  So you can't use that to detect
-		-- that the unit on a frame has changed.  So we need to check for the
-		-- GUID changing here.  However, if the frame is not shown we can't update
-		-- the GUID or it hoses the update system.  So only update the GUID if
-		-- we're already visible if we're not then the unit watch will update it
-		-- normally.
 		if self:IsVisible() then
 			local guid = new_unit and UnitGUID(new_unit) or nil
 			if guid ~= self.guid then
-				self.unit = new_unit -- Make sure unit is set before updates happen.
+				self.unit = new_unit
 				updated = true
 				self:UpdateGUID(guid)
 			end
@@ -418,7 +390,6 @@ function UnitFrame__scripts:OnAttributeChanged(key, value)
 			return
 		end
 
-		-- debug assertion to help try and track down ticket 475.
 		if DEBUG then
 			if not new_unit then
 				expect(self.guid, '==', nil)
@@ -436,8 +407,6 @@ function UnitFrame__scripts:OnAttributeChanged(key, value)
 			PitBull4.unit_id_to_frames_with_wacky[new_unit][self] = true
 		end
 
-		-- Hackaround Clique forcing the frames to use togglemenu, which
-		-- is broken on raid frames.  Idea borrowed from ShadowedUF
 		if new_unit and new_unit:sub(1, 4) == "raid" then
 			self:WrapScript(self, "OnAttributeChanged", [[
         if value == "togglemenu" and self:GetAttribute("clique-shiv") == "1" then
@@ -473,12 +442,8 @@ function UnitFrame__scripts:OnHide()
 	self:GetScript("OnDragStop")(self)
 
 	local force_show = self.force_show
-	-- Clear the guid without causing an update unless the frame
-	-- is force_shown in which case force an update.
 	self:UpdateGUID(nil,force_show and true or false)
 	if DEBUG then			
-		-- debug test to help try and track down issue 475.  The
-		-- guid should always end up set to nil after this.
 		expect(self.guid, '==', nil)
 	end
 	if force_show then
@@ -486,13 +451,6 @@ function UnitFrame__scripts:OnHide()
 		return
 	end
 
-	-- Iterate the modules and call their OnHide function to tell them 
-	-- a frame was hidden.  They may very well be changing the frame and
-	-- causing layout changes.  However, since the frame is hidden we
-	-- do not track this or cause layout updates to happen.  They'll
-	-- happen when the frame is shown again anyway.  Skip calling OnHide
-	-- when dont_update is set becuase we're only temporarily hiding the
-	-- frame for RefreshGroup().
 	if not self.dont_update then
 		for _, module_type in ipairs(MODULE_UPDATE_ORDER) do
 			for _, module in PitBull4:IterateModulesOfType(module_type) do
@@ -502,19 +460,11 @@ function UnitFrame__scripts:OnHide()
 	end
 end
 
--- Ugly hack function to allow running RegisterForClicks in cata.
--- This function is currently missing from the RestrictedFrames environment.
--- Frames created in combat won't have the ability to use the right click
--- menu on them until you leave combat the next time when this function runs.
 local function register_for_clicks_helper(frame, clicks)
 	frame:RegisterForClicks(clicks)
 end
 register_for_clicks_helper = PitBull4:OutOfCombatWrapper(register_for_clicks_helper)
 
---- Add the proper functions and scripts to a SecureUnitButton, as well as some various initialization.
--- @param frame a Button which inherits from SecureUnitButton
--- @param isExampleFrame whether the button is an example frame, thus not a real unit frame
--- @usage PitBull4:ConvertIntoUnitFrame(frame)
 function PitBull4:ConvertIntoUnitFrame(frame, isExampleFrame)
 	if DEBUG then
 		expect(frame, 'typeof', 'frame')
@@ -570,10 +520,6 @@ function PitBull4:ConvertIntoUnitFrame(frame, isExampleFrame)
 			frame:RegisterForDrag("LeftButton")
 			frame:RegisterForClicks("AnyUp")
 		elseif not ClickCastHeader then
-			-- if we can't set attributes directly and Clique isn't running
-			-- then RegisterForClicks upon leaving combat.  Works around
-			-- the lack of RegisterForClicks in the RestrictedFrames environment
-			-- for cata.
 			register_for_clicks_helper(frame, "AnyUp")
 		end
 	end
@@ -583,13 +529,10 @@ function PitBull4:ConvertIntoUnitFrame(frame, isExampleFrame)
 
 	if frame.is_singleton then
 		if not frame.classification_db.click_through then
-			-- Only enable click casting if the frame isn't click_through.
 			_G.ClickCastFrames[frame] = true
 		end
 	else
 		if not ClickCastHeader then
-			-- member unit frames are handled differently in cata.
-			-- See the initialConfigFunction attribute on the GroupHeader.
 			_G.ClickCastFrames[frame] = true
 		end
 	end
@@ -599,8 +542,6 @@ end
 local seen_layout_dbs = setmetatable({}, {__mode='k'})
 PitBull4.seen_layout_dbs = seen_layout_dbs
 
---- Reheck the toggleForVehicle attribute for the unit frame
--- @usage frame:RefreshVehicle()
 function UnitFrame:RefreshVehicle()
 	local classification_db = self.classification_db
 	if not classification_db then
@@ -618,8 +559,6 @@ function UnitFrame:RefreshVehicle()
 	end
 end
 
---- Recheck the layout of the unit frame, make sure it's up to date, and update the frame.
--- @usage frame:RefreshLayout()
 function UnitFrame:_RefreshLayout()
 	local old_layout = self.layout
 	
@@ -646,8 +585,6 @@ function UnitFrame:_RefreshLayout()
 end
 UnitFrame.RefreshLayout = PitBull4:OutOfCombatWrapper(UnitFrame._RefreshLayout)
 
--- Set the frame as able to be clicked through or not.
--- @usage frame:SetClickThroughState(true)
 function SingletonUnitFrame:SetClickThroughState(state)
 	local mouse_state = not not self:IsMouseEnabled()
 	if not state ~= mouse_state then
@@ -657,8 +594,6 @@ function SingletonUnitFrame:SetClickThroughState(state)
 end
 SingletonUnitFrame.SetClickThroughState= PitBull4:OutOfCombatWrapper(SingletonUnitFrame.SetClickThroughState)
 
---- Reset the size and position of the unit frame.
--- @usage frame:RefixSizeAndPosition()
 function SingletonUnitFrame:RefixSizeAndPosition()
 	local layout_db = self.layout_db
 	local classification_db = self.classification_db
@@ -675,18 +610,12 @@ function SingletonUnitFrame:RefixSizeAndPosition()
 end
 SingletonUnitFrame.RefixSizeAndPosition = PitBull4:OutOfCombatWrapper(SingletonUnitFrame.RefixSizeAndPosition)
 
---- Activate the unit frame.
--- This handles UnitWatch and the custom StateDriver 
--- @usage frame:Activate()
 function SingletonUnitFrame:Activate()
 	RegisterUnitWatch(self, true)
 	RegisterStateDriver(self, "pb4visibility", "[petbattle] hide; default")
 end
 SingletonUnitFrame.Activate = PitBull4:OutOfCombatWrapper(SingletonUnitFrame.Activate)
 
---- Deactivate the unit frame.
--- This handles UnitWatch and the custom StateDriver 
--- @usage frame:Deactivate()
 function SingletonUnitFrame:Deactivate()
 	UnregisterUnitWatch(self)
 	UnregisterStateDriver(self, "pb4visibility")
@@ -711,8 +640,6 @@ function SingletonUnitFrame:UnforceShow()
 	self.force_show = nil
 	self:SetAttribute("config_mode", nil)
 	
-	-- If we're visible force an udpate so everything is properly in a
-	-- non-config mode state
 	if self:IsVisible() then
 		self:Update()
 	end
@@ -735,13 +662,6 @@ if not LibSharedMedia then
 end
 local DEFAULT_FONT, DEFAULT_FONT_SIZE = ChatFontNormal:GetFont()
 
---- Get the font of the unit frame.
--- @param font_override nil or the LibSharedMedia name of a font
--- @param size_multiplier how much to multiply the default font size by. Defaults to 1.
--- @return path to the font
--- @return size of the font
--- @usage local font, size = frame:GetFont(db.font, db.size)
--- frame.MyModule:SetFont(font, size)
 function UnitFrame:GetFont(font_override, size_multiplier)
 	local layout_db = self.layout_db
 	local font
@@ -770,12 +690,6 @@ function UnitFrame:UpdateBestUnit()
 	end
 end
 
---- Update all details about the UnitFrame, possibly after a GUID change
--- @param same_guid whether the previous GUID is the same as the current, at which point is less crucial to update
--- @param update_layout whether to update the layout no matter what
--- @usage frame:Update()
--- @usage frame:Update(true)
--- @usage frame:Update(false, true)
 function UnitFrame:Update(same_guid, update_layout)
 	if self.dont_update then
 		return
@@ -792,7 +706,6 @@ function UnitFrame:Update(same_guid, update_layout)
 		end
 		return
 	elseif not self.classification_db or not self.layout_db then
-		-- Possibly unused frame made for another profile
 		return	
 	end
 	self.populated = true
@@ -814,17 +727,11 @@ function UnitFrame:Update(same_guid, update_layout)
 	end
 end
 
---- Check the guid of the Unit Frame, if it is changed, then update the frame.
--- @param guid result from UnitGUID(unit)
--- @param update when true force an update even if the guid isn't changed, but is non-nil, when false never cause an update and when update is empty or nil let the function decide on its own if an update is needed.
--- @usage frame:UpdateGUID(UnitGUID(frame.unit))
--- @usage frame:UpdateGUID(UnitGUID(frame.unit), true)
 function UnitFrame:UpdateGUID(guid, update)
 	if DEBUG then
 		expect(guid, 'typeof', 'string;nil')
 	end
 	
-	-- if the guids are the same, cut out, but don't if it's a wacky unit that has a guid.
 	if update ~= true and self.guid == guid and not (guid and self.is_wacky and not self.best_unit) then
 		return
 	end
@@ -847,11 +754,6 @@ local function iter(frame, id)
 	return id, frame[id], module
 end
 
---- Iterate over all controls on this frame
--- @usage for id, control, module in PitBull4.IterateControls() do
---     doSomethingWith(control)
--- end
--- @return iterator which returns the id, control, and module
 function UnitFrame:IterateControls()
 	return iter, self, nil
 end
@@ -872,12 +774,6 @@ local iters = setmetatable({}, {__index=function(iters, module_type)
 	return iter
 end})
 
---- Iterate over all controls on this frame of the given type
--- @param module_type one of "bar", "indicator", "custom"
--- @usage for id, control, module in PitBull4.IterateControlsOfType("bar") do
---     doSomethingWith(control)
--- end
--- @return iterator which returns the id, control, and module
 function UnitFrame:IterateControlsOfType(module_type)
 	return iters[module_type], self, nil
 end

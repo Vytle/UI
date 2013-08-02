@@ -1,8 +1,6 @@
 local _G = _G
 local PitBull4 = _G.PitBull4
-
 local L = PitBull4.L
-
 local DEBUG = PitBull4.DEBUG
 local expect = PitBull4.expect
 
@@ -61,9 +59,6 @@ do
 		better_unit_ids["raidpet" .. i] = "raidpet" .. i
 		better_unit_ids["raid" .. i .. "pet"] = "raidpet" .. i
 	end
-	-- There's no good constant for this.  We used to use
-	-- MAX_ARENA_TEAM_MEMBERS which doesn't make sense and broke
-	-- when 5.2 moved it into the PVPUI addon.
 	for i = 1, 5 do
 		better_unit_ids["arena" .. i] = "arena" .. i
 		better_unit_ids["arenapet" .. i] = "arenapet" .. i
@@ -74,10 +69,6 @@ do
 	end
 	setmetatable(better_unit_ids, target_same_with_target_mt)
 	
-	--- Return the best UnitID for the UnitID provided
-	-- @param unit the known UnitID
-	-- @usage PitBull4.Utils.GetBestUnitID("playerpet") == "pet"
-	-- @return the best UnitID. If the ID is invalid, it will return false
 	function PitBull4.Utils.GetBestUnitID(unit)
 		return better_unit_ids[unit]
 	end
@@ -94,11 +85,6 @@ do
 		valid_singleton_unit_ids["boss" .. i] = true
 	end
 	
-	--- Return whether the UnitID provided is a singleton
-	-- @param unit the UnitID to check
-	-- @usage PitBull4.Utils.IsSingletonUnitID("player") == true
-	-- @usage PitBull4.Utils.IsSingletonUnitID("party1") == false
-	-- @return whether it is a singleton
 	function PitBull4.Utils.IsSingletonUnitID(unit)
 		return valid_singleton_unit_ids[unit]
 	end
@@ -116,14 +102,6 @@ do
 	}
 	setmetatable(valid_classifications, target_same_mt)
 	
-	--- Return whether the classification is valid
-	-- @param classification the classification to check
-	-- @usage PitBull4.Utils.IsValidClassification("player") == true
-	-- @usage PitBull4.Utils.IsValidClassification("party") == true
-	-- @usage PitBull4.Utils.IsValidClassification("partytarget") == true
-	-- @usage PitBull4.Utils.IsValidClassification("partypettarget") == true
-	-- @usage PitBull4.Utils.IsValidClassification("party1") == false
-	-- @return whether it is a a valid classification
 	function PitBull4.Utils.IsValidClassification(unit)
 		return valid_classifications[unit]
 	end
@@ -140,12 +118,6 @@ do
 		raidpet = true,
 	}
 	
-	--- Return whether the classification provided is considered "wacky"
-	-- @param classification the classification in question
-	-- @usage assert(not PitBull4.Utils.IsWackyUnitGroup("player"))
-	-- @usage assert(PitBull4.Utils.IsWackyUnitGroup("targettarget"))
-	-- @usage assert(PitBull4.Utils.IsWackyUnitGroup("partytarget"))
-	-- @return whether it is wacky
 	function PitBull4.Utils.IsWackyUnitGroup(classification)
 		return not non_wacky_unit_ids[classification]
 	end
@@ -198,12 +170,6 @@ do
 		return good
 	end})
 	
-	--- Return a localized form of the unit classification.
-	-- @param classification a unit classification, e.g. "player", "party", "partypet"
-	-- @usage PitBull4.Utils.GetLocalizedClassification("player") == "Player"
-	-- @usage PitBull4.Utils.GetLocalizedClassification("target") == "Player's target"
-	-- @usage PitBull4.Utils.GetLocalizedClassification("partypettarget") == "Party pet targets"
-	-- @return a localized string of the unit classification
 	function PitBull4.Utils.GetLocalizedClassification(classification)
 		if DEBUG then
 			expect(classification, 'typeof', 'string')
@@ -214,12 +180,6 @@ do
 	end
 end
 
---- Leave a function as-is or if a string is passed in, convert it to a namespace-method function call.
--- @param namespace a table with the method func_name on it
--- @param func_name a function (which would then just return) or a string, which is the name of the method.
--- @usage PitBull4.Utils.ConvertMethodToFunction({}, function(value) return value end)("blah") == "blah"
--- @usage PitBull4.Utils.ConvertMethodToFunction({ method = function(self, value) return value end }, "method")("blah") == "blah"
--- @return a function
 function PitBull4.Utils.ConvertMethodToFunction(namespace, func_name)
 	if type(func_name) == "function" then
 		return func_name
@@ -234,11 +194,6 @@ function PitBull4.Utils.ConvertMethodToFunction(namespace, func_name)
 	end
 end
 
---- Return the Mob ID of the given GUID.
--- It doesn't matter if the guid starts with "0x" or not.
--- This will only work for NPCs, not other types of guids, such as players.
--- @usage PitBull4.Utils.GetMobIDFromGuid("0xF13000046514911F") == 1125
--- @usage PitBull4.Utils.GetMobIDFromGuid("F13000046514911F") == 1125
 function PitBull4.Utils.GetMobIDFromGuid(guid)
     if DEBUG then
         expect(guid, 'typeof', 'string')
@@ -253,10 +208,6 @@ function PitBull4.Utils.GetMobIDFromGuid(guid)
 		return tonumber(guid:sub(-12, -9), 16)
 end
 
---- Return the unit classification of the given unit.
--- This acts like UnitClassification(unit), but returns "worldboss" for bosses that match LibBossIDs-1.0
--- @param unit The unit to check the classification of.
--- @return one of "worldboss", "elite", "rareelite", "rare", or "normal"
 function PitBull4.Utils.BetterUnitClassification(unit)
     local classification = UnitClassification(unit)
     local LibBossIDs = PitBull4.LibBossIDs
@@ -294,4 +245,3 @@ local function deep_copy(data)
 	return t
 end
 PitBull4.Utils.deep_copy = deep_copy
-

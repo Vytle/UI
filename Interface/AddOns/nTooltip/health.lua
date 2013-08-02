@@ -1,4 +1,3 @@
-
 local _, nTooltip = ...
 local cfg = nTooltip.Config
 
@@ -8,11 +7,9 @@ end
 
 local select = select
 local tonumber = tonumber
-
 local modf = math.modf
 local gsub = string.gsub
 local format = string.format
-
 local bar = GameTooltipStatusBar
 bar.Text = bar:CreateFontString(nil, 'OVERLAY')
 bar.Text:SetPoint('CENTER', bar, cfg.healthbar.textPos, 0, 1)

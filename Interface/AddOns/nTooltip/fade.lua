@@ -1,4 +1,3 @@
-
 local _, nTooltip = ...
 local cfg = nTooltip.Config
 

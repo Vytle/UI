@@ -741,7 +741,7 @@ f.Center:SetScript('OnClick', function(self, button)
             local realID, playerFaction, grouped
             for i = 1, #BNTable do
                 if (BNTable[i][7]) then
-                    realID = BNTable[i][2] --(BATTLENET_NAME_FORMAT):format(BNTable[i][2], BNTable[i][3])
+                    realID = BNTable[i][2]
                     menuCountWhispers = menuCountWhispers + 1
                     menuList[3].menuList[menuCountWhispers] = {
                         text = realID,
@@ -890,7 +890,6 @@ local function FriendsOnEnter(self)
 end
 
     -- the 'OnEnter' functions
-
 f:SetScript('OnEnter', function()
     if (not cfg.tab.showAlways) then
         ShowTab()
@@ -943,7 +942,6 @@ f.Left:SetScript('OnEnter', function(self)
 end)
 
     -- the 'OnLeave' functions
-
 for _, leaveFrame in pairs({
     f,
     f.Right,
@@ -964,7 +962,6 @@ for _, leaveFrame in pairs({
 end
 
     -- the Minimap scripts
-
 if (not cfg.tab.showAlways) then
     Minimap:HookScript('OnEnter',function()
         ShowTab()
@@ -988,7 +985,6 @@ if (not cfg.tab.showAlways) then
 end
 
     -- the 'OnEvent' functions
-
 f.Center:SetScript('OnEvent', FriendsOnEvent)
 f.Left:SetScript('OnEvent', GuildOnEvent)
 f.Right:SetScript('OnEvent', InfoOnEvent)

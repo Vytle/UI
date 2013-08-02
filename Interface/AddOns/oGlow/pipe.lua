@@ -1,9 +1,7 @@
 local _, ns = ...
 local oGlow = ns.oGlow
-
 local pipesTable = {}
 local numPipes = 0
-
 local argcheck = oGlow.argcheck
 
 function oGlow:RegisterPipe(pipe, enable, disable, update, name, desc)

@@ -1,20 +1,16 @@
 local _, nChat = ...
 local cfg = nChat.Config
-
 local _G = _G
 local type = type
 local select = select
 local unpack = unpack
-
 local gsub = string.gsub
 local format = string.format
 
 _G.CHAT_FRAME_TAB_SELECTED_MOUSEOVER_ALPHA = 1
 _G.CHAT_FRAME_TAB_SELECTED_NOMOUSE_ALPHA = 0
-
 _G.CHAT_FRAME_TAB_NORMAL_MOUSEOVER_ALPHA = 0.5
 _G.CHAT_FRAME_TAB_NORMAL_NOMOUSE_ALPHA = 0
-
 _G.CHAT_FRAME_FADE_OUT_TIME = 0.25
 _G.CHAT_FRAME_FADE_TIME = 0.1
 
@@ -37,25 +33,19 @@ _G.CHAT_FONT_HEIGHTS = {
 _G.CHAT_FLAG_AFK = '[AFK] '
 _G.CHAT_FLAG_DND = '[DND] '
 _G.CHAT_FLAG_GM = '[GM] '
-
 _G.CHAT_GUILD_GET = '(|Hchannel:Guild|hG|h) %s:\32'
 _G.CHAT_OFFICER_GET = '(|Hchannel:o|hO|h) %s:\32'
-
 _G.CHAT_PARTY_GET = '(|Hchannel:party|hP|h) %s:\32'
 _G.CHAT_PARTY_LEADER_GET = '(|Hchannel:party|hPL|h) %s:\32'
 _G.CHAT_PARTY_GUIDE_GET = '(|Hchannel:party|hDG|h) %s:\32'
 _G.CHAT_MONSTER_PARTY_GET = '(|Hchannel:raid|hR|h) %s:\32'
-
 _G.CHAT_RAID_GET = '(|Hchannel:raid|hR|h) %s:\32'
 _G.CHAT_RAID_WARNING_GET = '(RW!) %s:\32'
 _G.CHAT_RAID_LEADER_GET = '(|Hchannel:raid|hL|h) %s:\32'
-
 _G.CHAT_BATTLEGROUND_GET = '(|Hchannel:Battleground|hBG|h) %s:\32'
 _G.CHAT_BATTLEGROUND_LEADER_GET = '(|Hchannel:Battleground|hBL|h) %s:\32'
-
 _G.CHAT_INSTANCE_CHAT_GET = '|Hchannel:INSTANCE_CHAT|h[I]|h %s:\32';
 _G.CHAT_INSTANCE_CHAT_LEADER_GET = '|Hchannel:INSTANCE_CHAT|h[IL]|h %s:\32';
-
 
 local AddMessage = ChatFrame1.AddMessage
 local function FCF_AddMessage(self, text, ...)
@@ -78,7 +68,6 @@ ChatFrameMenuButton:SetAlpha(0)
 ChatFrameMenuButton:EnableMouse(false)
 
     -- Tab text colors for the tabs
-
 hooksecurefunc('FCFTab_UpdateColors', function(self, selected)
     if (selected) then
         self:GetFontString():SetTextColor(0, 0.75, 1)
@@ -88,7 +77,6 @@ hooksecurefunc('FCFTab_UpdateColors', function(self, selected)
 end)
 
     -- Tab text fadeout
-
 local origFCF_FadeOutChatFrame = _G.FCF_FadeOutChatFrame
 local function FCF_FadeOutChatFrameHook(chatFrame)
     origFCF_FadeOutChatFrame(chatFrame)
@@ -108,7 +96,6 @@ end
 FCF_FadeOutChatFrame = FCF_FadeOutChatFrameHook
 
     -- Improve mousewheel scrolling
-
 hooksecurefunc('FloatingChatFrame_OnMouseScroll', function(self, direction)
     if (direction > 0) then
         if (IsShiftKeyDown()) then
@@ -138,14 +125,12 @@ hooksecurefunc('FloatingChatFrame_OnMouseScroll', function(self, direction)
 end)
 
     -- Reposit toast frame
-
 BNToastFrame:HookScript('OnShow', function(self)
     BNToastFrame:ClearAllPoints()
     BNToastFrame:SetPoint('BOTTOMLEFT', ChatFrame1EditBox, 'TOPLEFT', 0, 15)
 end)
 
     -- Modify the chat tabs
-
 local function SkinTab(self)
     local chat = _G[self]
 
@@ -290,7 +275,6 @@ local function ModChat(self)
     end
 
         -- Modify the editbox
-
     for k = 6, 11 do
         select(k, _G[self..'EditBox']:GetRegions()):SetTexture(nil)
     end
@@ -351,7 +335,6 @@ hooksecurefunc('FCF_OpenTemporaryWindow', SetChatStyle)
 SetChatStyle()
 
     -- Chat menu, just a middle click on the chatframe 1 tab
-
 hooksecurefunc('ChatFrameMenu_UpdateAnchorPoint', function()
     if (FCF_GetButtonSide(DEFAULT_CHAT_FRAME) == 'right') then
         ChatMenu:ClearAllPoints()
@@ -376,7 +359,6 @@ ChatFrame1Tab:HookScript('OnClick', function(self, button)
 end)
 
     -- Modify the gm chatframe and add a sound notification on incoming whispers
-
 local f = CreateFrame('Frame')
 f:RegisterEvent('ADDON_LOADED')
 f:RegisterEvent('CHAT_MSG_WHISPER')

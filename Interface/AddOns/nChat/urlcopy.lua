@@ -1,9 +1,6 @@
-
 local find = string.find
 local gsub = string.gsub
-
 local found = false
-
 local function ColorURL(text, url)
     found = true
     return ' |H'..'url'..':'..tostring(url)..'|h'..'|cff0099FF'..tostring(url)..'|h|r '

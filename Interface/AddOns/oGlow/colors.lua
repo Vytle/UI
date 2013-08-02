@@ -6,10 +6,6 @@ local argcheck = oGlow.argcheck
 local colorTable = setmetatable(
 	{},
 
-	-- We mainly want to handle item quality coloring, so this acts as a fallback.
-	-- The bonus of doing this is that we don't really have to make any updates to
-	-- the add-on if any new item colors are added. It also caches unlike the old
-	-- version.
 	{__index = function(self, val)
 		argcheck(val, 2, 'number')
 		local r, g, b = GetItemQualityColor(val)

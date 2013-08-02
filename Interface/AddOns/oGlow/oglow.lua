@@ -1,19 +1,13 @@
 local _, ns = ...
 local oGlow = ns.oGlow
-
 local _VERSION = GetAddOnMetadata('oGlow', 'version')
-
 local argcheck = oGlow.argcheck
-
 local print = function(...) print("|cff33ff99oGlow:|r ", ...) end
 local error = function(...) print("|cffff0000Error:|r "..string.format(...)) end
-
 local pipesTable = ns.pipesTable
 local filtersTable = ns.filtersTable
 local displaysTable = ns.displaysTable
-
 local numFilters = 0
-
 local optionCallbacks = {}
 local activeFilters = ns.activeFilters
 
@@ -78,7 +72,6 @@ local ADDON_LOADED = function(self, event, addon)
 end
 
 --[[ General API ]]
-
 function oGlow:CallFilters(pipe, frame, ...)
 	argcheck(pipe, 2, 'string')
 
@@ -113,8 +106,6 @@ function oGlow:CallOptionCallbacks()
 end
 
 oGlow:RegisterEvent('ADDON_LOADED', ADDON_LOADED)
-
 oGlow.argcheck = argcheck
-
 oGlow.version = _VERSION
 _G.oGlow = oGlow

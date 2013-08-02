@@ -1,12 +1,8 @@
-
 local _, nTooltip = ...
 local cfg = nTooltip.Config
-
 local _G = _G
 local select = select
-
 local format = string.format
-
 local UnitName = UnitName
 local UnitLevel = UnitLevel
 local UnitExists = UnitExists
@@ -368,7 +364,6 @@ GameTooltip:HookScript('OnTooltipSetUnit', function(self, ...)
         end
 
             -- Fetch inspect information (ilvl and spec)
-
         if (unit and CanInspect(unit)) then
             if (not self.inspectRefresh and lastUpdate >= 30 and not self.blockInspectRequests) then
                 if (not self.blockInspectRequests) then
