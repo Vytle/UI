@@ -1,20 +1,9 @@
---[[
-	Here I do the combatlog stuff. 
-	
-	Todo: 
-		SPELL_AURA_REMOVED_DOSE
-		SPELL_DISPEL
-		SPELL_STOLEN
-]]
 local folder, core = ...
-
 local nametoGUIDs = core.nametoGUIDs
 local P
 local playerGUID
 local Debug = core.Debug
 local guidBuffs = core.guidBuffs
---~ local _ --underscore so GetGlobals doesn't nag me.
-
 local LibAI = LibStub("LibAuraInfo-1.0", true)
 if not LibAI then	error(folder .. " requires LibAuraInfo-1.0.") return end
 
@@ -34,7 +23,6 @@ do
 	function core:RegisterLibAuraInfo()
 		LibAI.UnregisterAllCallbacks(self) 
 		if P.watchCombatlog == true then
-	--~ 		self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 			LibAI.RegisterCallback(self, "LibAuraInfo_AURA_APPLIED")
 			LibAI.RegisterCallback(self, "LibAuraInfo_AURA_REMOVED")
 			LibAI.RegisterCallback(self, "LibAuraInfo_AURA_REFRESH")
@@ -65,14 +53,10 @@ do
 end
 
 
---[[]]
 do
 	local dstName, dstFlags, shortName
 	function core:ForceNameplateUpdate(dstGUID)
-		if not self:UpdatePlateByGUID(dstGUID) then
-			--We can't find a nameplate that matches that GUID.
-			--Lets check if the GUID is a player, if so find a nameplate that matches the player's name.
-	
+		if not self:UpdatePlateByGUID(dstGUID) then	
 			dstName, dstFlags = LibAI:GetGUIDInfo(dstGUID)
 			if dstFlags and self:FlagIsPlayer(dstFlags) then
 				shortName = self:RemoveServerName(dstName) --Nameplates don't have server names.
@@ -93,16 +77,7 @@ do
 		if #guidBuffs[dstGUID] > 0 then
 			self:RemoveOldSpells(dstGUID)
 		end
-		
-	--~ 	if spellName == "Lacerate" then
-	--~ 		Debug("AddSpellToGUID", spellName, count)
-	--~ 	end
-		dstName, dstFlags = LibAI:GetGUIDInfo(dstGUID)
-	--~ 	if stackCount > 0 then
-	--~ 		Debug("AddSpellToGUID", dstName, spellName, stackCount)
-	--~ 	end
-		
-		
+		dstName, dstFlags = LibAI:GetGUIDInfo(dstGUID)	
 		getTime = GetTime()
 		count = #guidBuffs[dstGUID]
 		if count == 0 then
@@ -123,22 +98,16 @@ do
 				guidBuffs[dstGUID][i+1].isDebuff = true
 				guidBuffs[dstGUID][i+1].debuffType = debuffType or "none"
 			end
-			
-	--~ 		local dstName, dstFlags = LibAI:GetGUIDInfo(dstGUID)
-	--~ 		Debug("AddSpellToGUID 1", spellName, dstName)
+
 			return true
 		
 		else
 			for i=1, count do 
 				if guidBuffs[dstGUID][i].sID == spellID and (not guidBuffs[dstGUID][i].caster or guidBuffs[dstGUID][i].caster == srcName) then
-					--I know 2 of the same buff can be on someone, but how do I confirm that?
-					-- unitCaster returns a unitID and combatlog has names. =/
 					
 					guidBuffs[dstGUID][i].expirationTime = expires or 0 - 0.1
 					guidBuffs[dstGUID][i].startTime = getTime
-					
-					
-	--~ 				Debug("AddSpellToGUID", spellName.." already on "..dstName)
+
 					return true
 				elseif i == count then
 					table_insert(guidBuffs[dstGUID], i+1, {
@@ -158,8 +127,6 @@ do
 						guidBuffs[dstGUID][i+1].debuffType = debuffType or "none"
 					end
 					
-	--~ 				local dstName, dstFlags = LibAI:GetGUIDInfo(dstGUID)
-	--~ 				Debug("AddSpellToGUID 2", spellName, dstName)
 					return true
 				end
 			end
@@ -175,25 +142,15 @@ do
 		found, stackCount, debuffType, duration, expires, isDebuff, casterGUID = LibAI:GUIDAuraID(dstGUID, spellID)
 		
 		spellName, _, spellTexture = GetSpellInfo(spellID)
-		dstName, dstFlags = LibAI:GetGUIDInfo(dstGUID)
-		
-	
-		
-	--~ 	if not found then
-	--~ 		Debug("LibAuraInfo_AURA_APPLIED", found, dstName, spellName, expires and expires - GetTime())
-	--~ 	end
-		
+		dstName, dstFlags = LibAI:GetGUIDInfo(dstGUID)	
 		
 		if found then
---~ 			spellTexture = spellTexture:gsub("Interface\\Icons\\", "")
 			spellTexture = spellTexture:upper():gsub("INTERFACE\\ICONS\\", "")
 			
 			if spellTexture:find("\\") then
 				Debug("spellTexture", spellTexture)
 			end
 			
-	--~ 		Debug("LibAuraInfo_AURA_APPLIED 1", dstGUID, spellName, spellID, "+", count, debuffType, duration, expires, isDebuff)
-	
 			updateBars = false
 			if P.spellOpts[spellName] and P.spellOpts[spellName].show then
 				if P.spellOpts[spellName].show == 1 or (P.spellOpts[spellName].show == 2 and srcGUID == playerGUID) then --fix this
@@ -221,18 +178,13 @@ do
 	local table_remove = table.remove
 	local srcName, srcFlags
 	function core:LibAuraInfo_AURA_REMOVED(event, dstGUID, spellID, srcGUID, spellSchool, auraType)
-	--~ 	Debug("LibAuraInfo_AURA_REMOVED 1", GetSpellInfo(spellID))
 		if guidBuffs[dstGUID] then
-	--~ 		Debug("LibAuraInfo_AURA_REMOVED 2", GetSpellInfo(spellID))
 			srcName, srcFlags = LibAI:GetGUIDInfo(srcGUID)
 			for i = #guidBuffs[dstGUID], 1, -1 do 
-	--~ 			Debug("LibAuraInfo_AURA_REMOVED 3", GetSpellInfo(spellID))
 				if guidBuffs[dstGUID][i].sID == spellID and (not guidBuffs[dstGUID][i].caster or guidBuffs[dstGUID][i].caster == srcName) then
 					table_remove(guidBuffs[dstGUID], i)
 					
-					--Remove the spell from nameplates on screen.
 					self:ForceNameplateUpdate(dstGUID)
-	--~ 				Debug("LibAuraInfo_AURA_REMOVED 4", GetSpellInfo(spellID))
 					
 					return
 				end
@@ -247,14 +199,7 @@ do
 	local GetTime = GetTime
 	local GetSpellInfo = GetSpellInfo
 	function core:LibAuraInfo_AURA_REFRESH(event, dstGUID, spellID, srcGUID, spellSchool, auraType, expirationTime)
-		spellName = GetSpellInfo(spellID)
-		
-	--~ 	if srcGUID == playerGUID then
-	--~ 		local _, count = LibAI:GUIDAuraID(dstGUID, spellID)
-	--~ 		
-	--~ 		Debug("AURA_REFRESH", spellName, count)
-	--~ 	end
-		
+		spellName = GetSpellInfo(spellID)		
 		
 		if guidBuffs[dstGUID] then
 			srcName, srcFlags = LibAI:GetGUIDInfo(srcGUID)
@@ -283,14 +228,8 @@ do
 	local spellName, srcName, srcFlags, dstName
 	local GetSpellInfo = GetSpellInfo
 	local GetTime = GetTime
-	--DOSE = spell stacking
 	function core:LibAuraInfo_AURA_APPLIED_DOSE(event, dstGUID, spellID, srcGUID, spellSchool, auraType, stackCount, expirationTime)
 		spellName = GetSpellInfo(spellID)
-	--~ 	local _, stackCount1 = LibAI:GUIDAuraID(dstGUID, spellID)
-	--~ 	if srcGUID == playerGUID then
-	--~ 		
-	--~ 		Debug("AURA_APPLIED_DOSE", spellName, count, stackCount)
-	--~ 	end
 		
 		if guidBuffs[dstGUID] then
 			srcName, srcFlags = LibAI:GetGUIDInfo(srcGUID)
@@ -301,10 +240,6 @@ do
 					guidBuffs[dstGUID][i].startTime = GetTime()
 					guidBuffs[dstGUID][i].expirationTime = expirationTime
 				
-	--~ 				if srcGUID == playerGUID then
-	--~ 					Debug("AURA_APPLIED_DOSE 2", spellName, stackCount1, stackCount)
-	--~ 				end
-					
 					self:ForceNameplateUpdate(dstGUID)
 					return
 				end
@@ -325,7 +260,6 @@ do
 	local table_remove = table.remove
 	function core:LibAuraInfo_AURA_CLEAR(event, dstGUID)
 		if guidBuffs[dstGUID] then
-			--Remove all known buffs for that person. Maybe we're in a BG and don't need their old buffs on our plates.
 			for i=table_getn(guidBuffs[dstGUID]), 1, -1 do 
 				table_remove(guidBuffs[dstGUID], i)
 			end
