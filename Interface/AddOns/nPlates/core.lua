@@ -15,7 +15,6 @@ local noThreatColor = {0, 1, 0}
 local glowTexture = 'Interface\\AddOns\\nPlates\\media\\textureNewGlow'
 local overlayTexture = 'Interface\\AddOns\\nPlates\\media\\textureOverlay'
 local whiteOverlay = 'Interface\\AddOns\\nPlates\\media\\textureIconOverlay'
-
 local f = CreateFrame('Frame', nil, UIParent)
 
 f.elapsed = 0
@@ -55,7 +54,6 @@ local totemData = {
 }
 
     -- Some general functions
-
 local function FormatValue(number)
     if (number >= 1e6) then
         return tonumber(format('%.1f', number/1e6))..'m'
@@ -363,7 +361,6 @@ local function SkinPlate(self, nameFrame)
         insets = { left = -1, right = -1, top = -1, bottom = -1 }
     })
     self.Castbar:SetBackdropColor(0.2, 0.2, 0.2, 0.5)
-
     self.Castbar:ClearAllPoints()
     self.Castbar:SetPoint('TOPRIGHT', self.Health, 'BOTTOMRIGHT', 0, -9)
     self.Castbar:SetPoint('BOTTOMLEFT', self.Health, 'BOTTOMLEFT', 0, -20)
@@ -424,7 +421,6 @@ local function SkinPlate(self, nameFrame)
 
     self:SetScript('OnUpdate', nil)
     self:SetScript('OnShow', UpdatePlate)
-
     self:SetScript('OnHide', function(self)
         self.Highlight:Hide()
     end)
