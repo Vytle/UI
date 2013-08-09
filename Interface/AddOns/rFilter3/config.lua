@@ -367,13 +367,12 @@ cfg.rf3_BuffList = {
 	  },
 	},
   },
-  -- Shooting stars
+  -- Treant Form
   [7] = {
-	spellid = 93400,
-	spec = 1,
+	spellid = 125047,
 	size = 26,
-	-- aura 3
-	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -181.2, y = -264 },
+	-- aura 1
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -266, y = -264 },
 	unit = "player",
 	validate_unit   = true,
 	ismine          = true,
@@ -391,12 +390,13 @@ cfg.rf3_BuffList = {
 	  },
 	},
   },
-  -- Treant Form
+  -- Shooting stars
   [8] = {
-	spellid = 125047,
+	spellid = 93400,
+	spec = 1,
 	size = 26,
-	-- aura 1
-	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -266, y = -264 },
+	-- aura 3
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -181.2, y = -264 },
 	unit = "player",
 	validate_unit   = true,
 	ismine          = true,
@@ -483,6 +483,30 @@ cfg.rf3_BuffList = {
 	  },
 	},
   },
+  -- Savage Defense
+  [12] = {
+	spellid = 132402,
+	spec = 3,
+	size = 26,
+	-- aura 3
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -181.2, y = -264 },
+	unit = "player",
+	validate_unit   = true,
+	ismine          = true,
+	desaturate      = false,
+	move_ingame     = true,
+	hide_ooc        = false,
+	alpha = {
+	  found = {
+		frame = 1,
+		icon = 1,
+	  },
+	  not_found = {
+		frame = 0,
+		icon = 0,
+	  },
+	},
+  },
 }
 -- default Druid debuffs
 cfg.rf3_DebuffList = {
@@ -512,6 +536,52 @@ cfg.rf3_DebuffList = {
   -- Sunfire
   [2] = {
 	spellid = 93402,
+	size = 26,
+	-- aura 5
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -96.4, y = -264 },
+	unit = "target",
+	validate_unit   = true,
+	ismine          = true,
+	desaturate      = false,
+	move_ingame     = true,
+	hide_ooc        = false,
+	alpha = {
+	  found = {
+		frame = 1,
+		icon = 1,
+	  },
+	  not_found = {
+		frame = 0,
+		icon = 0,
+	  },
+	},
+  },
+  -- Thrash
+  [3] = {
+	spellid = 106830,
+	size = 26,
+	-- aura 6
+	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -54, y = -264 },
+	unit = "target",
+	validate_unit   = true,
+	ismine          = true,
+	desaturate      = false,
+	move_ingame     = true,
+	hide_ooc        = false,
+	alpha = {
+	  found = {
+		frame = 1,
+		icon = 1,
+	  },
+	  not_found = {
+		frame = 0,
+		icon = 0,
+	  },
+	},
+  },
+  -- Lacerate
+  [4] = {
+	spellid = 33745,
 	size = 26,
 	-- aura 5
 	pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -96.4, y = -264 },
